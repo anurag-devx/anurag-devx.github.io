@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0c12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c12'/%3E%3Crect x='11' y='11' width='10' height='10' rx='2' fill='%238ea2ff'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://anurag-devx.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anurag Singh · Multi-agent & RAG systems">
+<meta property="og:description" content="Anurag Singh builds reliable multi-agent and RAG systems, backed by six years of banking and fintech analytics at Citi and Simpl.">
+<meta property="og:url" content="https://anurag-devx.github.io/">
+<meta name="twitter:card" content="summary">
+<title>Anurag Singh · Multi-agent & RAG systems</title>
+<meta name="description" content="Anurag Singh builds reliable multi-agent and RAG systems, backed by six years of banking and fintech analytics at Citi and Simpl.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+
+/* Layout: sticky top bar (mark · page tabs · theme switch) over one page at a time — Home, Approach, Projects, Experience — on a faint blueprint grid */
+:root{
+  --bg:#f5f6fa; --panel:#ffffff; --panel-2:#eef0f6; --fg:#12141c; --muted:#5d6378; --line:#dfe2ec; --grid:rgba(40,52,110,.05);
+  --accent:#3b54d6; --accent-soft:#e4e8fb; --check:#b4610f; --check-soft:#f8ebdc; --ok:#1f8a5a;
+  --display:"Unbounded","Avenir Next",system-ui,sans-serif;
+  --body:"Geist","Helvetica Neue",Arial,system-ui,sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a0c12; --panel:#10131c; --panel-2:#151926; --fg:#e7e9f2; --muted:#8b92a8; --line:#1f2433; --grid:rgba(140,160,255,.05);
+  --accent:#8ea2ff; --accent-soft:#1a2142; --check:#f0a95b; --check-soft:#33240f; --ok:#5fd39b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a0c12; --panel:#10131c; --panel-2:#151926; --fg:#e7e9f2; --muted:#8b92a8; --line:#1f2433; --grid:rgba(140,160,255,.05);
+  --accent:#8ea2ff; --accent-soft:#1a2142; --check:#f0a95b; --check-soft:#33240f; --ok:#5fd39b; color-scheme:dark}
+
+*{box-sizing:border-box}
+::selection{background:color-mix(in srgb,var(--accent) 32%,transparent);color:var(--fg)}
+[hidden]{display:none!important}
+html,body{min-height:100%}
+body{
+  background-color:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:48px 48px;background-attachment:fixed;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:68rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{margin:0;text-wrap:balance}
+h1,h2{font-family:var(--display);font-weight:600;letter-spacing:-.02em}
+h3{font-family:var(--body);font-weight:600;letter-spacing:-.01em}
+.label{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.label b{color:var(--accent);font-weight:500}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+.mark{font-family:var(--mono);font-size:.85rem;color:var(--fg);text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-right:auto}
+.mark i{width:8px;height:8px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs a{font-size:.88rem;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{color:var(--fg);border-color:var(--line);background:var(--panel)}
+.switch{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--muted);font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:4px}
+.track{width:38px;height:22px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);position:relative;flex:none}
+.knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--fg);transition:transform .2s ease}
+.switch[aria-checked="true"] .knob{transform:translateX(16px);background:var(--accent);box-shadow:0 0 10px var(--accent)}
+@media (max-width:640px){.tabs{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}}
+
+/* pages */
+main{padding-block:clamp(36px,7vw,80px) 40px}
+.view{display:grid;gap:clamp(36px,6vw,64px)}
+@media (prefers-reduced-motion:no-preference){.view:not([hidden]){animation:slide .35s ease both}@keyframes slide{from{transform:translateY(6px)}to{transform:none}}}
+.head{display:grid;gap:12px;max-width:46rem}
+.head h2{font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.15}
+.head p{margin:0;color:var(--muted)}
+
+/* hero */
+.hero{display:grid;gap:26px}
+.hero h1{font-size:clamp(2.1rem,6vw,4.4rem);line-height:1.06;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(1.02rem,1.6vw,1.2rem);max-width:42rem;margin:0}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem}
+.step{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+.step i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.step.c i{background:var(--check)} .step.e i{background:var(--fg)}
+.arrow{color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:8px;font-weight:500;text-decoration:none;font-size:.92rem;border:1px solid var(--line);color:var(--fg);background:var(--panel)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.email{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.copy{font:inherit;font-size:.72rem;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:6px;padding:3px 8px;cursor:pointer}
+
+/* now building */
+.now{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:12px}
+.now a{display:grid;gap:6px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-decoration:none;color:var(--fg)}
+.now a:hover{border-color:var(--accent)}
+.now b{font-weight:600}
+.now span{color:var(--muted);font-size:.88rem}
+.pulse{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;color:var(--ok);letter-spacing:.04em}
+.pulse::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+
+/* ledgers */
+.ledger{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.lrow{display:grid;grid-template-columns:1.1fr 1.4fr 1.3fr 1.4fr;border-top:1px solid var(--line)}
+.lrow.rag{grid-template-columns:1fr 2fr 1.4fr}
+.lrow:first-child{border-top:0}
+.lrow > div{padding:14px 18px;min-width:0;font-size:.94rem}
+.lrow.head > div{padding-block:11px;background:var(--panel-2)}
+.lrow .name{font-weight:600}
+.tag{display:inline-block;font-family:var(--mono);font-size:.68rem;padding:2px 7px;border-radius:4px;margin-right:8px}
+.t-p{background:var(--accent-soft);color:var(--accent)} .t-c{background:var(--check-soft);color:var(--check)} .t-e{background:var(--panel-2);color:var(--fg);border:1px solid var(--line)}
+.tag.cell-l{display:none}
+@media (max-width:760px){
+  .lrow,.lrow.rag{grid-template-columns:1fr;padding-block:6px}
+  .lrow.head{display:none}
+  .lrow > div{padding:5px 16px}
+  .lrow .name{padding-top:14px}
+  .tag.cell-l{display:inline-block}
+}
+
+/* projects */
+.group-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.cards{display:grid;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:clamp(18px,3vw,28px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,16rem);gap:18px 34px}
+.card.active{border-left:2px solid var(--accent)}
+.card h3{font-size:clamp(1.2rem,2.2vw,1.5rem)}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.status{font-family:var(--mono);font-size:.68rem;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.main{display:grid;gap:10px;min-width:0}
+.main p{margin:0;max-width:62ch}
+.main ul{margin:0;padding-left:1.1rem;display:grid;gap:4px;max-width:62ch}
+.side{display:grid;gap:14px;align-content:start;font-size:.88rem;min-width:0;overflow-wrap:anywhere}
+.k{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.pipe{display:grid;gap:5px;font-family:var(--mono);font-size:.78rem}
+.pipe span{display:flex;gap:8px;align-items:center}
+.pipe span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+.pipe span.c::before{background:var(--check)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:.76rem;padding:2px 8px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line)}
+@media (max-width:760px){.card{grid-template-columns:1fr}}
+
+/* experience */
+.jobs{display:grid}
+.job{display:grid;grid-template-columns:10.5rem minmax(0,1fr);gap:6px 30px;padding-block:22px;border-top:1px solid var(--line)}
+.job:first-child{border-top:0;padding-top:0}
+.when{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:3px}
+.job h3{font-size:1.15rem}
+.role{color:var(--muted);margin:2px 0 10px;font-size:.94rem}
+.job ul{margin:0;padding-left:1.1rem;display:grid;gap:4px;max-width:64ch}
+@media (max-width:640px){.job{grid-template-columns:1fr}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:28px}
+.stack{display:grid;gap:10px}
+.stack h3{font-size:.95rem}
+.edu{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.edu li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.edu li > span:last-child{font-family:var(--mono);font-size:.8rem;color:var(--muted);white-space:nowrap}
+.edu small{display:block;color:var(--muted);font-size:.86rem}
+
+/* contact strip */
+.contact{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:clamp(20px,4vw,36px);display:grid;gap:14px}
+.contact h2{font-size:clamp(1.3rem,3vw,1.9rem)}
+.contact p{margin:0;color:var(--muted)}
+
+/* approach: rectangular delivery loop */
+.key{margin:0;font-size:.9rem;color:var(--muted)}
+.kq{color:var(--check);font-weight:600} .kw{color:var(--accent);font-weight:600}
+.loopwrap{position:relative}
+.looptrack{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
+.looptrack path{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 9;opacity:.55}
+.looptrack .token{fill:var(--accent);filter:drop-shadow(0 0 8px var(--accent))}
+.la{position:absolute;z-index:2;transform:translate(-50%,-50%);font-family:var(--mono);font-size:.9rem;color:var(--accent);background:var(--bg);border:1px solid var(--line);border-radius:999px;width:26px;height:26px;display:grid;place-items:center;line-height:1}
+.loop{list-style:none;margin:0;padding:0;position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:44px 48px;grid-template-areas:"a b c" "f e d"}
+.st{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px;align-content:start;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.s1{grid-area:a}.s2{grid-area:b}.s3{grid-area:c}.s4{grid-area:d}.s5{grid-area:e}.s6{grid-area:f}
+.no{justify-self:start;font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.08em;border:1px solid var(--accent);border-radius:999px;padding:1px 9px;transition:background .25s ease,color .25s ease}
+.st h3{font-size:1.05rem}
+.st p{margin:0;font-size:.88rem;display:grid;gap:2px}
+.st p b{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.st .q b{color:var(--check)} .st .w b{color:var(--accent)}
+.st .w{color:var(--muted)}
+.st:hover,.st:focus-within{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 14px 34px -18px var(--accent)}
+.st:hover .no{background:var(--accent);color:var(--bg)}
+.st > *{transition:opacity .25s ease}
+.loopwrap.dim .st:not(:hover) > *{opacity:.5}
+.loopback{font-family:var(--mono);font-size:.78rem;color:var(--muted);display:flex;gap:8px;align-items:center}
+.loopback span{color:var(--accent);font-size:1.1rem}
+@media (max-width:760px){
+  .loop{grid-template-columns:1fr;grid-auto-rows:auto;grid-template-areas:none;gap:30px}
+  .st{grid-area:auto!important}
+  .looptrack,.la{display:none}
+  .st:not(:last-child)::after{content:"↓";position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);color:var(--accent);font-family:var(--mono)}
+  .st{position:relative}
+}
+@media (prefers-reduced-motion:no-preference){.looptrack path{animation:march 1.2s linear infinite}@keyframes march{to{stroke-dashoffset:-15}}}
+@media (prefers-reduced-motion:reduce){.looptrack .token{display:none}.st{transition:none}}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:12px}
+.pr{border-top:2px solid var(--accent);background:var(--panel);border-radius:0 0 10px 10px;padding:16px;display:grid;gap:6px}
+.pr h3{font-size:1rem} .pr p{margin:0;color:var(--muted);font-size:.9rem}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.metrics{grid-template-columns:1fr}}
+.mt{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:6px}
+.mk{font-family:var(--mono);font-size:.78rem;color:var(--accent);display:flex;align-items:center;gap:8px}
+.mk::before{content:"";width:8px;height:8px;border-radius:2px;background:currentColor}
+.mt.c .mk{color:var(--check)} .mt.e .mk{color:var(--fg)}
+.mt p{margin:0;font-size:.88rem;color:var(--muted)}
+.bridge{display:grid;gap:8px}
+.br{display:grid;grid-template-columns:minmax(0,1fr) 2rem minmax(0,1fr);align-items:center;gap:8px}
+.br span{padding:12px 14px;border-radius:10px;font-size:.9rem}
+.from{background:var(--panel-2);border:1px solid var(--line)}
+.into{background:var(--accent-soft);color:var(--fg);border:1px solid var(--accent)}
+.to{text-align:center;color:var(--accent);font-family:var(--mono);padding:0!important}
+@media (max-width:600px){.br{grid-template-columns:1fr}.to{transform:rotate(90deg)}}
+
+/* projects: visual cards */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fchip{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:5px 14px;cursor:pointer}
+.fchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.legend{margin-left:auto;display:flex;gap:6px 12px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.lg{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:-6px}
+.lg.p{background:var(--accent)} .lg.c{background:var(--check)} .lg.e{background:var(--fg)}
+.card{display:grid;grid-template-columns:1fr;gap:14px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:14px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}
+.n{font-family:var(--mono);font-size:.76rem;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);white-space:nowrap}
+.n.p{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.n.c{border-color:var(--check);color:var(--check);background:var(--check-soft)}
+.n.e{border-color:var(--fg);color:var(--fg)}
+.n.r{border-style:dashed;border-color:var(--accent);color:var(--fg)}
+.n.io{color:var(--muted)}
+.pair{display:inline-grid;gap:4px}
+.ar{color:var(--muted);font-family:var(--mono);font-size:.8rem}
+.pitch{margin:0;font-size:1.02rem;max-width:62ch}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.specs > div{font-size:.86rem;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
+.sk{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.sk.c{color:var(--check)} .sk.e{color:var(--fg)}
+@media (max-width:700px){.specs{grid-template-columns:1fr}}
+details{font-size:.9rem}
+summary{cursor:pointer;font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+summary:hover{color:var(--fg)}
+details ul{margin:8px 0 0;padding-left:1.1rem;display:grid;gap:4px;max-width:64ch}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.foot a{font-family:var(--mono);font-size:.8rem;text-decoration:none}
+.cards.small{grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
+.cards.small .card{align-content:start}
+
+/* stickman headline */
+.hero{overflow-x:clip}
+.title{position:relative}
+#w-sr{display:inline-block;white-space:nowrap;transform-origin:0% 100%}
+.stage{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.stage .halo{stroke:var(--bg);fill:none;stroke-linecap:round;stroke-linejoin:round}
+.stage .fig{stroke:var(--accent);fill:none;stroke-linecap:round;stroke-linejoin:round}
+.stage .headf{fill:var(--bg)}
+.replay{justify-self:start;margin-top:-4px;font-family:var(--mono);font-size:.7rem;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
+.replay:hover{color:var(--fg);border-color:var(--accent)}
+
+/* live pipeline */
+.pipeline-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto}
+.pipeline{display:block;width:100%;min-width:620px;height:auto}
+.pipeline .edges path{fill:none;stroke:var(--line);stroke-width:2}
+.pipeline rect{fill:var(--panel-2);stroke:var(--line);stroke-width:1}
+.pipeline rect.chk{stroke:var(--check)}
+.pipeline text{fill:var(--fg);font-family:var(--mono);font-size:14px;text-anchor:middle}
+.pipeline circle.out{fill:var(--panel-2);stroke:var(--ok)}
+.pipeline .outt{fill:var(--ok);font-size:18px}
+.pipeline .dot{fill:var(--accent);filter:drop-shadow(0 0 6px var(--accent))}
+
+/* debate replay */
+.hearing{display:grid;gap:8px;margin-top:6px;max-width:34rem}
+.say,.verdict{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.88rem;background:var(--panel-2)}
+.say b,.verdict b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.say.pro b{color:var(--check)} .say.def b{color:var(--accent)}
+.say.def{margin-left:clamp(0px,6vw,48px)}
+.verdict{border-color:var(--ok)} .verdict b{color:var(--ok)} .verdict span{color:var(--muted)}
+
+/* benchmark race */
+.race{display:grid;gap:8px;margin-top:6px;max-width:34rem}
+.lane{display:grid;grid-template-columns:6.5rem minmax(0,1fr) 5.5rem;gap:10px;align-items:center;font-size:.85rem}
+.who{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.track2{height:10px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}
+.fill{display:block;height:100%;border-radius:999px}
+.fill.fast{width:8.7%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.fill.slow{width:100%;background:var(--check)}
+.res{font-family:var(--mono);font-size:.75rem;text-align:right;white-space:nowrap}
+.res.ok{color:var(--ok)} .res.bad{color:var(--check)}
+.note{font-size:.78rem;color:var(--muted)}
+
+/* cursor glow */
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;display:none}
+@media (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .glow{display:block;background:radial-gradient(260px circle at var(--mx,-999px) var(--my,-999px),color-mix(in srgb,var(--accent) 9%,transparent),transparent 70%)}
+}
+main,footer,.bar{position:relative;z-index:1}
+.bar{z-index:5}
+
+@media (prefers-reduced-motion:no-preference){
+  .say.pro{animation:spk-a 10s infinite}
+  .say.def{animation:spk-b 10s infinite}
+  .verdict{animation:spk-v 10s infinite}
+  @keyframes spk-a{0%,28%{opacity:1;border-color:var(--check)}32%,100%{opacity:.5}}
+  @keyframes spk-b{0%,28%{opacity:.5}32%,58%{opacity:1;border-color:var(--accent)}62%,100%{opacity:.5}}
+  @keyframes spk-v{0%,60%{opacity:.35;transform:scale(.98)}64%,96%{opacity:1;transform:none}100%{opacity:.35}}
+  .fill.fast{animation:grow-fast 1.2s ease-out both}
+  .fill.slow{animation:grow-slow 6s linear both}
+  .res{animation:show 0s both}
+  .res.ok{animation-delay:1.2s} .res.bad{animation-delay:6s}
+  @keyframes grow-fast{from{width:0}to{width:8.7%}}
+  @keyframes grow-slow{from{width:0}to{width:100%}}
+  @keyframes show{from{visibility:hidden}to{visibility:visible}}
+}
+
+footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono)}
+</style>
+</head>
+<body>
+
+
+<div class="glow" id="glow" aria-hidden="true"></div>
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#home"><i></i>anurag-singh</a>
+    <nav class="tabs" aria-label="Pages">
+      <a href="#home">Home</a>
+      <a href="#approach">Approach</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+    </nav>
+    <button class="switch" id="theme" type="button" role="switch" aria-checked="false" aria-label="Dark mode">
+      <span id="theme-label">Light</span><span class="track"><span class="knob"></span></span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <div class="view" data-view="home">
+    <section class="hero">
+      <div class="label"><b>●</b> Multi-agent &amp; RAG systems</div>
+      <div class="title">
+        <h1><span id="w-i">I</span> build multi-agent and RAG systems that <em id="w-sr">stay reliable.</em></h1>
+        <svg class="stage" id="stage" aria-hidden="true"></svg>
+      </div>
+      <button class="replay" id="replay" type="button" aria-label="Replay the headline animation">↻ replay</button>
+      <p class="lede">Six years of analytics in banking and fintech at Citi and Simpl, now building GenAI systems hands-on. Retrieval keeps agents grounded in real evidence, agents make the judgements, code enforces the rules, and a checker can always say no.</p>
+      <div class="flow" aria-label="Design pattern">
+        <span class="step"><i></i>retrieval grounds</span><span class="arrow" aria-hidden="true">→</span>
+        <span class="step"><i></i>agents propose</span><span class="arrow" aria-hidden="true">→</span>
+        <span class="step c"><i></i>a checker can say no</span><span class="arrow" aria-hidden="true">→</span>
+        <span class="step e"><i></i>code enforces</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See projects</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="btn" href="https://github.com/anurag-devx" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/anurag-singh-037a83103/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div><span class="pulse">OPEN FOR COLLABORATION &amp; DISCUSSION</span></div>
+    </section>
+
+    <section class="stack" aria-labelledby="live-h">
+      <div class="group-title"><h2 id="live-h" style="font-size:1.1rem">How a request moves</h2><span class="label">Live pipeline</span></div>
+      <div class="pipeline-box">
+        <svg class="pipeline" id="pipeline" viewBox="0 0 960 150" role="img" aria-label="A query is retrieved against evidence, two agents propose answers, a checker reviews them, code enforces the rules, and a verified answer comes out">
+          <g class="edges">
+            <path d="M130 75 H170"/><path d="M290 75 C330 75 330 40 360 40"/><path d="M290 75 C330 75 330 110 360 110"/>
+            <path d="M480 40 C520 40 520 75 550 75"/><path d="M480 110 C520 110 520 75 550 75"/><path d="M670 75 H720"/><path d="M840 75 H872"/>
+          </g>
+          <g class="nodes">
+            <rect x="10" y="57" width="120" height="36" rx="8"/><text x="70" y="80">query</text>
+            <rect x="170" y="57" width="120" height="36" rx="8"/><text x="230" y="80">retrieve</text>
+            <rect x="360" y="22" width="120" height="36" rx="8"/><text x="420" y="45">agent A</text>
+            <rect x="360" y="92" width="120" height="36" rx="8"/><text x="420" y="115">agent B</text>
+            <rect class="chk" x="550" y="57" width="120" height="36" rx="8"><animate attributeName="stroke-width" values="1;1;3;3;1;1" keyTimes="0;.6;.64;.74;.78;1" dur="5s" repeatCount="indefinite"/></rect><text x="610" y="80">checker</text>
+            <rect x="720" y="57" width="120" height="36" rx="8"/><text x="780" y="80">code</text>
+            <circle class="out" cx="900" cy="75" r="22"><animate attributeName="stroke-width" values="1;1;3;3;1" keyTimes="0;.9;.94;.99;1" dur="5s" repeatCount="indefinite"/></circle><text class="outt" x="900" y="81">✓</text>
+          </g>
+          <circle class="dot" r="6"><animateMotion dur="5s" repeatCount="indefinite" path="M70 75 H230 C330 75 330 40 420 40 C520 40 520 75 610 75 H780 H900"/></circle>
+          <circle class="dot b" r="6" opacity="0"><animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.19;.65;1" calcMode="linear" path="M230 75 C330 75 330 110 420 110 C520 110 520 75 610 75"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.18;.19;.65;.66;1" dur="5s" repeatCount="indefinite"/></circle>
+        </svg>
+      </div>
+    </section>
+
+    <section class="stack" aria-labelledby="now-h">
+      <div class="group-title"><h2 id="now-h" style="font-size:1.1rem">Now building</h2><span class="label">Actively improving</span></div>
+      <div class="now">
+        <a href="#projects"><span class="pulse">LATEST</span><b>RAG security scanner</b><span>Prompt-injection and data-leak testing for RAG apps</span></a>
+        <a href="#projects"><span class="pulse">ACTIVE</span><b>Forward Court</b><span>Multi-agent fact-checker · Meta Hackathon 2026</span></a>
+        <a href="#projects"><span class="pulse">ACTIVE</span><b>MarketX</b><span>Multi-agent equity research on local LLMs</span></a>
+        <a href="#projects"><span class="pulse">ACTIVE</span><b>offline-agent</b><span>Open-source framework for reliable local agents</span></a>
+      </div>
+    </section>
+  </div>
+
+  <!-- APPROACH -->
+  <div class="view" data-view="approach" hidden>
+    <section class="stack">
+      <div class="head">
+        <div class="label"><b>01</b> How I work</div>
+        <h2>A delivery loop for AI systems</h2>
+        <p>I run every build like a product with a metric attached. Each stage asks the product question first, then sets the engineering artifact that answers it. The loop closes when production numbers feed the next decision.</p>
+      </div>
+      <p class="key"><span class="kq">The question</span> comes first, then <span class="kw">what I build</span> to answer it.</p>
+      <div class="loopwrap" id="loopwrap">
+        <svg class="looptrack" id="looptrack" aria-hidden="true"><path id="looppath" d=""/><circle class="token" r="5"><animateMotion id="loopmotion" dur="9s" repeatCount="indefinite" path="M0 0"/></circle></svg>
+        <span class="la" data-a="1-2" aria-hidden="true">→</span><span class="la" data-a="2-3" aria-hidden="true">→</span><span class="la" data-a="3-4" aria-hidden="true">↓</span><span class="la" data-a="4-5" aria-hidden="true">←</span><span class="la" data-a="5-6" aria-hidden="true">←</span><span class="la" data-a="6-1" aria-hidden="true">↑</span>
+        <ol class="loop">
+          <li class="st s1"><span class="no">01</span><h3>Frame the decision</h3><p class="q"><b>The question</b>Who acts on this output, and what does a wrong answer cost?</p><p class="w"><b>What I build</b>A success metric and a guardrail metric, written before any code.</p></li>
+          <li class="st s2"><span class="no">02</span><h3>Get the data right</h3><p class="q"><b>The question</b>What do we actually know, and when did we know it?</p><p class="w"><b>What I build</b>Point-in-time tables, data contracts and quality checks with control limits.</p></li>
+          <li class="st s3"><span class="no">03</span><h3>Design the agents</h3><p class="q"><b>The question</b>Which steps need judgement, and which need rules?</p><p class="w"><b>What I build</b>One job per agent. Code executes. A checker can veto.</p></li>
+          <li class="st s4"><span class="no">04</span><h3>Ground and evaluate</h3><p class="q"><b>The question</b>How will we know it works before users find out?</p><p class="w"><b>What I build</b>A labelled eval set and a simple baseline. It ships only if it beats the baseline.</p></li>
+          <li class="st s5"><span class="no">05</span><h3>Guard in code</h3><p class="q"><b>The question</b>What must never happen, whatever the model says?</p><p class="w"><b>What I build</b>Permission policy, approval gates and an audit log.</p></li>
+          <li class="st s6"><span class="no">06</span><h3>Run and measure</h3><p class="q"><b>The question</b>Is it still worth what it costs?</p><p class="w"><b>What I build</b>Drift, veto, override and cost-per-decision tracking that feeds stage 01.</p></li>
+        </ol>
+      </div>
+      <div class="loopback"><span>↺</span> Stage 06 feeds stage 01: production numbers shape the next decision.</div>
+    </section>
+
+    <section class="stack">
+      <div class="head">
+        <div class="label"><b>02</b> Principles</div>
+        <h2>What I hold to</h2>
+      </div>
+      <div class="principles">
+        <div class="pr"><h3>A baseline before a model</h3><p>If a rule or a SQL query gets most of the way, the agent has to beat that, not zero.</p></div>
+        <div class="pr"><h3>Unverifiable beats confidently wrong</h3><p>A system that says "not enough evidence" keeps trust. One wrong verdict can lose it.</p></div>
+        <div class="pr"><h3>Small models, small decisions</h3><p>Shrink what the model has to decide. Let deterministic code do the rest.</p></div>
+        <div class="pr"><h3>Safety lives in code</h3><p>A prompt can be ignored or injected. A permission check cannot be talked out of.</p></div>
+        <div class="pr"><h3>Cost per decision is a product metric</h3><p>Tokens and latency belong on the same dashboard as accuracy.</p></div>
+        <div class="pr"><h3>If it isn't logged, it didn't happen</h3><p>Every input, retrieval, output and approval is traceable after the fact.</p></div>
+      </div>
+    </section>
+
+    <section class="stack">
+      <div class="head">
+        <div class="label"><b>03</b> Metrics</div>
+        <h2>What I track in agent systems</h2>
+        <p>Accuracy alone hides most failures. These six numbers tell me where a system is breaking.</p>
+      </div>
+      <div class="metrics">
+        <div class="mt"><span class="mk">Task success</span><p>Share of eval tasks completed correctly, end to end.</p></div>
+        <div class="mt"><span class="mk">Groundedness</span><p>Share of claims tied to a cited, retrieved source.</p></div>
+        <div class="mt"><span class="mk">Retrieval recall@k</span><p>Did the right evidence make it into the top results?</p></div>
+        <div class="mt c"><span class="mk">Checker veto rate</span><p>Too low means a rubber stamp; too high means weak proposers.</p></div>
+        <div class="mt c"><span class="mk">Human override rate</span><p>How often people disagree with the system, and why.</p></div>
+        <div class="mt e"><span class="mk">Cost and latency per run</span><p>What each decision costs, and whether users will wait for it.</p></div>
+      </div>
+    </section>
+
+    <section class="stack">
+      <div class="head">
+        <div class="label"><b>04</b> My edge</div>
+        <h2>Where analytics meets agents</h2>
+        <p>Six years in banking analytics taught me disciplines most agent builds skip. I carry them straight across.</p>
+      </div>
+      <div class="bridge">
+        <div class="br"><span class="from">A/B tests with guardrail metrics</span><span class="to">→</span><span class="into">Eval sets with baselines and veto rates</span></div>
+        <div class="br"><span class="from">Data quality checks with control limits</span><span class="to">→</span><span class="into">Monitoring retrieval and answer drift</span></div>
+        <div class="br"><span class="from">Point-in-time data, no leakage</span><span class="to">→</span><span class="into">Evals that never see the future</span></div>
+        <div class="br"><span class="from">Model risk review and audit trails</span><span class="to">→</span><span class="into">Human approvals and logged agent runs</span></div>
+        <div class="br"><span class="from">Unit economics and stakeholder KPIs</span><span class="to">→</span><span class="into">Cost per decision as a product metric</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="view" data-view="projects" hidden>
+    <section class="stack">
+      <div class="head">
+        <div class="label"><b>●</b> Active · constantly improving</div>
+        <h2>What I'm building</h2>
+      </div>
+      <div class="filters" role="toolbar" aria-label="Filter projects">
+        <button class="fchip" data-f="all" aria-pressed="true">All</button>
+        <button class="fchip" data-f="multi" aria-pressed="false">Multi-agent</button>
+        <button class="fchip" data-f="rag" aria-pressed="false">RAG</button>
+        <button class="fchip" data-f="security" aria-pressed="false">Security</button>
+        <span class="legend"><i class="lg p"></i>proposes <i class="lg c"></i>checks <i class="lg e"></i>enforced in code</span>
+      </div>
+      <div class="cards">
+
+        <article class="card active" data-tags="security rag">
+          <div class="top"><h3>RAG security scanner</h3><span class="pulse">LATEST · NOV 2026</span></div>
+          <div class="chain"><span class="n io">RAG app</span><span class="ar">→</span><span class="pair"><span class="n p">injection probes</span><span class="n p">leak probes</span></span><span class="ar">→</span><span class="n c">response analysis</span><span class="ar">→</span><span class="n e">findings report</span></div>
+          <p class="pitch">Tests RAG applications for prompt injection and data leaks, so teams find weak spots before attackers do.</p>
+          <div class="specs"><div><span class="sk">Problem</span>RAG apps tend to trust whatever they retrieve.</div><div><span class="sk c">Check</span>Did the app follow hidden instructions or expose sensitive data?</div><div><span class="sk e">Output</span>Findings with the probe that triggered each one.</div></div>
+          <div class="foot"><div class="chips"><span>Prompt injection</span><span>Data leakage</span><span>LLM security</span></div></div>
+        </article>
+
+        <article class="card active" data-tags="multi rag">
+          <div class="top"><h3>Forward Court</h3><span class="pulse">ACTIVE</span><span class="status">Meta Global AI Developer Hackathon 2026</span></div>
+          <div class="chain"><span class="n io">forward</span><span class="ar">→</span><span class="n p">claim intake</span><span class="ar">→</span><span class="n r">evidence retrieval</span><span class="ar">→</span><span class="pair"><span class="n p">prosecutor</span><span class="n p">defender</span></span><span class="ar">→</span><span class="n c">judge</span><span class="ar">→</span><span class="n e">verdict card</span></div>
+          <p class="pitch">A multi-agent fact-checker for viral WhatsApp forwards that answers with a short, sourced verdict.</p>
+          <div class="specs"><div><span class="sk">Problem</span>Viral forwards spread faster than fact-checks.</div><div><span class="sk c">Check</span>The judge rules only on points tied to evidence.</div><div><span class="sk e">Guardrail</span>Every point cites a source; the forward is data, never instructions.</div></div>
+          <div class="hearing" aria-label="Example hearing, illustrative">
+            <div class="k">Example hearing · illustrative</div>
+            <div class="say pro"><b>Prosecutor</b>The photo is from an event two years ago, not this week. [source 1]</div>
+            <div class="say def"><b>Defender</b>The event in the message did happen this week. [sources 2, 3]</div>
+            <div class="verdict"><b>Verdict: Misleading</b><span>Real event, wrong photo · 3 sources cited</span></div>
+          </div>
+          <details><summary>Details</summary><ul>
+            <li>Splits each forward into separate checkable claims before any agent argues.</li>
+            <li>Returns "unverifiable" when evidence is thin rather than guessing.</li>
+            <li>Text pipeline complete; image claims and the WhatsApp gateway are in progress.</li>
+          </ul></details>
+          <div class="foot"><div class="chips"><span>Python</span><span>Meta AI</span><span>WhatsApp Cloud API</span></div></div>
+        </article>
+
+        <article class="card active" data-tags="multi rag">
+          <div class="top"><h3>MarketX</h3><span class="pulse">ACTIVE</span></div>
+          <div class="chain"><span class="n r">filings · news · prices</span><span class="ar">→</span><span class="pair"><span class="n p">regime · screener</span><span class="n p">technical · risk</span></span><span class="ar">→</span><span class="n p">bull ⇄ bear</span><span class="ar">→</span><span class="n c">validation veto</span><span class="ar">→</span><span class="n e">walk-forward gate</span></div>
+          <p class="pitch">A local research platform where specialist agents rank NSE stocks and a validator can reject weak picks.</p>
+          <div class="specs"><div><span class="sk">Problem</span>Indian market data is scattered across filings, results and news.</div><div><span class="sk c">Check</span>Validation agent and a probabilistic judge.</div><div><span class="sk e">Guardrail</span>Point-in-time data; ideas ship only if they pass a walk-forward test.</div></div>
+          <details><summary>Details</summary><ul>
+            <li>Inputs: broker data, NSE filings, XBRL results, news and macro indicators.</li>
+            <li>RAG search over filings and news, on local LLMs.</li>
+            <li>Tested walk-forward from 2019 to 2026, with intraday, swing and F&amp;O kept as separate tracks.</li>
+          </ul></details>
+          <div class="foot"><div class="chips"><span>Python</span><span>Ollama</span><span>RAG</span><span>Angel One API</span></div><a href="https://github.com/anurag-devx/marketx" target="_blank" rel="noopener">Code ↗</a></div>
+        </article>
+
+        <article class="card active" data-tags="multi security">
+          <div class="top"><h3>offline-agent</h3><span class="pulse">ACTIVE</span><span class="status">Open source · MIT · v0.2.0</span></div>
+          <div class="chain"><span class="n io">task</span><span class="ar">→</span><span class="n p">model decides once</span><span class="ar">→</span><span class="n e">permission check</span><span class="ar">→</span><span class="n e">code executes</span><span class="ar">→</span><span class="n c">verifier agent</span><span class="ar">→</span><span class="n e">log · undo</span></div>
+          <p class="pitch">A Python framework for running reliable AI agents on local models, with safety enforced in code.</p>
+          <div class="specs"><div><span class="sk">Problem</span>Small local models fail long tool-calling loops.</div><div><span class="sk c">Check</span>A read-only verifier agent checks every outcome.</div><div><span class="sk e">Guardrail</span>Permission policy, human approvals, undo and run logs.</div></div>
+          <div class="race" aria-label="Benchmark: rule mode finished in 89 seconds; the classic loop ran about 17 minutes and failed">
+            <div class="k">Benchmark race · bars to scale</div>
+            <div class="lane"><span class="who">Rule mode</span><span class="track2"><span class="fill fast"></span></span><span class="res ok">89 s ✓</span></div>
+            <div class="lane"><span class="who">Classic loop</span><span class="track2"><span class="fill slow"></span></span><span class="res bad">~17 min ✗</span></div>
+            <div class="note">Same file-sorting task, qwen3.5:9b on a 16 GB laptop. Tokens: 532 vs 15,705.</div>
+          </div>
+          <details><summary>Details</summary><ul>
+            <li>Agents defined in YAML, with a visual studio and a command-line tool.</li>
+            <li>41 tests run in CI on three operating systems.</li>
+            <li>Next: triage and coordinator agents for larger jobs, and a small-to-big model cascade.</li>
+          </ul></details>
+          <div class="foot"><div class="chips"><span>Python</span><span>Ollama</span><span>YAML</span><span>pytest</span><span>GitHub Actions</span></div><a href="https://github.com/anurag-devx/offline-agent" target="_blank" rel="noopener">Code ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="stack">
+      <div class="head">
+        <div class="label"><b>○</b> Prototypes &amp; RAG builds</div>
+        <h2 style="font-size:clamp(1.3rem,2.6vw,1.7rem)">Earlier work</h2>
+      </div>
+      <div class="cards small">
+        <article class="card" data-tags="security">
+          <div class="top"><h3>doc-governance-mvp</h3><span class="status">Prototype</span></div>
+          <div class="chain"><span class="n io">pull request</span><span class="ar">→</span><span class="n p">AI validation</span><span class="ar">→</span><span class="n c">review before merge</span></div>
+          <p class="pitch">GitHub Actions run AI validation on documentation changes and flag issues on the pull request.</p>
+          <div class="foot"><div class="chips"><span>GitHub Actions</span><span>LLM</span></div><a href="https://github.com/anurag-devx/doc-governance-mvp" target="_blank" rel="noopener">Code ↗</a></div>
+        </article>
+        <article class="card" data-tags="rag">
+          <div class="top"><h3>Local-First RAG Assistant</h3><span class="status">Private · on request</span></div>
+          <div class="chain"><span class="n io">PDFs</span><span class="ar">→</span><span class="pair"><span class="n r">FAISS dense</span><span class="n r">BM25 keyword</span></span><span class="ar">→</span><span class="n c">rerank</span><span class="ar">→</span><span class="n e">grounded answer</span></div>
+          <p class="pitch">Local PDF question answering built to get retrieval right before generation.</p>
+          <div class="foot"><div class="chips"><span>FAISS</span><span>BM25</span><span>FastAPI</span><span>Streamlit</span></div></div>
+        </article>
+        <article class="card" data-tags="rag">
+          <div class="top"><h3>Doc2Insight</h3><span class="status">Private · on request</span></div>
+          <div class="chain"><span class="n io">many formats</span><span class="ar">→</span><span class="n r">one index</span><span class="ar">→</span><span class="n e">cited answer</span></div>
+          <p class="pitch">Document Q&amp;A where every reply traces back to the document it came from.</p>
+          <div class="foot"><div class="chips"><span>RAG</span><span>GPT-4o-mini</span></div></div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="view" data-view="experience" hidden>
+    <section class="stack">
+      <div class="head">
+        <div class="label"><b>●</b> Experience</div>
+        <h2>Six years in banking and fintech</h2>
+      </div>
+      <div class="jobs">
+        <div class="job"><div class="when">Dec 2024 – Present</div><div>
+          <h3>Citi India</h3><div class="role">Information Management Officer, Digital Product Strategy</div>
+          <ul>
+            <li>Architected a RAG-based AI governance platform with automated model review, human-in-the-loop approvals, audit logging and GitHub integration for review before merge.</li>
+            <li>Built a PySpark data quality framework monitoring 100+ metrics across 10+ risk reports, with control-chart alerts.</li>
+            <li>Led a SAS migration that automated 20+ risk-reporting workflows, saving 40+ hours a month.</li>
+            <li>Owned end-to-end launch analytics for Paze Wallet and early-adoption analysis for FlexPay (Apple Pay BNPL).</li>
+            <li>Received the Citi Silver Gratitude Award for end-to-end wallet analytics on the Paze Wallet launch.</li>
+          </ul></div></div>
+        <div class="job"><div class="when">Dec 2021 – Nov 2024</div><div>
+          <h3>Simpl</h3><div class="role">Senior Data Analyst, Product &amp; Operations</div>
+          <ul>
+            <li>Recovered $1.1M in delinquent accounts within 45 days with predictive risk scoring for collections.</li>
+            <li>Raised credit approval rates 6% with a real-time credit limit model.</li>
+            <li>Designed the Instant Refund eligibility model and A/B test: ~20% lower delinquency net of chargeback costs; the rule went live.</li>
+            <li>Built a merchant risk-scoring framework (approval rate, refunds, chargebacks, support tickets); flagged merchants had their terms revised with the partnerships team.</li>
+            <li>Designed a two-stage NLP intent framework that improved intent classification by 15% and cut support load by 20%.</li>
+            <li>Built and owned end-to-end support analytics; won the 2023 Annual Award ("Do More With Less").</li>
+          </ul></div></div>
+        <div class="job"><div class="when">Dec 2020 – Dec 2021</div><div>
+          <h3>ESSI</h3><div class="role">Operations Analyst, Strategic Operations</div>
+          <ul><li>Built pricing optimisation models that lifted bid win rate 30% across 20+ projects.</li></ul></div></div>
+      </div>
+    </section>
+
+    <section class="two">
+      <div class="stack">
+        <div class="label">Skills</div>
+        <h3>GenAI &amp; agents</h3>
+        <div class="chips"><span>Multi-agent systems</span><span>Agent orchestration</span><span>Tool calling</span><span>RAG</span><span>Embeddings</span><span>Hybrid retrieval</span><span>Cross-encoder reranking</span><span>Prompt-injection defence</span><span>Ollama</span><span>Local LLMs</span></div>
+        <h3>Analytics &amp; ML</h3>
+        <div class="chips"><span>A/B testing</span><span>Credit &amp; risk analytics</span><span>XGBoost</span><span>NLP</span><span>Statistics</span><span>Segmentation</span></div>
+        <h3>Data &amp; engineering</h3>
+        <div class="chips"><span>Python</span><span>SQL</span><span>PySpark</span><span>Impala / HDFS</span><span>FastAPI</span><span>Tableau</span><span>GitHub Actions</span></div>
+      </div>
+      <div class="stack">
+        <div class="label">Education &amp; certification</div>
+        <ul class="edu">
+          <li><span>MBA, Operations &amp; Statistics<small>IIIT Allahabad · Silver Medalist</small></span><span>2020</span></li>
+          <li><span>B.Tech, Mechanical Engineering<small>SPPU Pune · Distinction</small></span><span>2017</span></li>
+          <li><span>Generative AI Engineering Professional Certificate<small>IBM</small></span><span>2026</span></li>
+          <li><span>Supervised Machine Learning<small>DeepLearning.AI &amp; Stanford Online</small></span><span>2022</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="contact" aria-labelledby="c-h" style="margin-top:clamp(40px,7vw,72px)">
+    <div class="label">Contact</div>
+    <h2 id="c-h">Building multi-agent or RAG systems?</h2>
+    <p><span class="pulse">OPEN FOR COLLABORATION &amp; DISCUSSION</span></p>
+    <p>Happy to talk through multi-agent design, RAG systems or AI security, or to collaborate on open-source work. Also open to Applied AI, GenAI engineering and analytics leadership roles in Pune, Bengaluru, Mumbai, Gurugram, Ahmedabad or remote, from January 2027.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.linkedin.com/in/anurag-singh-037a83103/" target="_blank" rel="noopener">Message on LinkedIn</a>
+      <a class="btn" href="mailto:anurag1481@gmail.com">Email</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <span class="email"><span id="em">anurag1481@gmail.com</span><button class="copy" id="copy" type="button">Copy</button></span>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>Anurag Singh</span><a href="https://github.com/anurag-devx" target="_blank" rel="noopener">github.com/anurag-devx</a></div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, sw=document.getElementById('theme'), lbl=document.getElementById('theme-label');
+  function sysDark(){try{return matchMedia('(prefers-color-scheme: dark)').matches}catch(e){return true}}
+  function apply(t){root.setAttribute('data-theme',t);var d=t==='dark';sw.setAttribute('aria-checked',d);lbl.textContent=d?'Dark':'Light'}
+  var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+  apply(saved==='light'||saved==='dark'?saved:(sysDark()?'dark':'light'));
+  sw.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);try{localStorage.setItem('theme',t)}catch(e){}});
+
+  var views=[].slice.call(document.querySelectorAll('[data-view]')), names=views.map(function(v){return v.dataset.view});
+  var tabs=[].slice.call(document.querySelectorAll('.tabs a'));
+  function route(){
+    var h=(location.hash||'').slice(1); if(names.indexOf(h)<0) h='home';
+    views.forEach(function(v){v.hidden=v.dataset.view!==h});
+    tabs.forEach(function(a){if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    window.scrollTo(0,0);
+    if(h==='home') onHome();
+    if(h==='approach') requestAnimationFrame(function(){layoutLoop()});
+  }
+
+  var reduce=false; try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+  var pipe=document.getElementById('pipeline');
+  if(reduce&&pipe&&pipe.pauseAnimations){pipe.pauseAnimations();pipe.querySelectorAll('.dot').forEach(function(d){d.style.display='none'})}
+
+  /* cursor glow */
+  var glow=document.getElementById('glow');
+  addEventListener('pointermove',function(e){glow.style.setProperty('--mx',e.clientX+'px');glow.style.setProperty('--my',e.clientY+'px')},{passive:true});
+
+  /* typing on flow labels (once) */
+  var typed=false;
+  function typeFlow(){
+    if(typed||reduce) return; typed=true;
+    var steps=[].slice.call(document.querySelectorAll('.hero .step'));
+    var texts=steps.map(function(s){var n=s.lastChild;var t=n.textContent;n.textContent='';return [n,t]});
+    var i=0,j=0;
+    (function tick(){
+      if(i>=texts.length) return;
+      var n=texts[i][0],t=texts[i][1];
+      n.textContent=t.slice(0,++j);
+      if(j>=t.length){i++;j=0;setTimeout(tick,180)}else setTimeout(tick,28);
+    })();
+  }
+
+  /* stick man */
+  var svgNS='http://www.w3.org/2000/svg';
+  var stage=document.getElementById('stage'), wI=document.getElementById('w-i'), wS=document.getElementById('w-sr'), title=document.querySelector('.title');
+  var P={
+    stand:{hd:[0,.1],n:[0,.22],h:[0,.58],le:[-.12,.36],lh:[-.15,.52],re:[.12,.36],rh:[.15,.52],lk:[-.06,.79],lf:[-.08,1],rk:[.06,.79],rf:[.08,1]},
+    crouch:{hd:[0,.3],n:[0,.4],h:[0,.7],le:[-.14,.52],lh:[-.2,.62],re:[.14,.52],rh:[.2,.62],lk:[-.14,.82],lf:[-.08,1],rk:[.14,.82],rf:[.08,1]},
+    jump:{hd:[0,.1],n:[0,.22],h:[0,.55],le:[-.14,.12],lh:[-.18,-.02],re:[.14,.12],rh:[.18,-.02],lk:[-.12,.68],lf:[-.04,.85],rk:[.12,.68],rf:[.04,.85]},
+    walkA:{hd:[.02,.1],n:[.02,.22],h:[0,.58],le:[.1,.38],lh:[.14,.52],re:[-.1,.38],rh:[-.14,.52],lk:[-.08,.79],lf:[-.18,1],rk:[.08,.79],rf:[.16,1]},
+    walkB:{hd:[.02,.1],n:[.02,.22],h:[0,.58],le:[-.1,.38],lh:[-.14,.52],re:[.1,.38],rh:[.14,.52],lk:[.06,.79],lf:[.18,1],rk:[-.06,.79],rf:[-.16,1]},
+    bend:{hd:[.2,.42],n:[.13,.44],h:[-.02,.62],le:[.2,.62],lh:[.26,.82],re:[.24,.6],rh:[.32,.82],lk:[.04,.8],lf:[-.04,1],rk:[.08,.8],rf:[.1,1]},
+    lift:{hd:[0,.14],n:[0,.26],h:[0,.6],le:[-.1,.12],lh:[-.08,-.06],re:[.1,.12],rh:[.08,-.06],lk:[-.08,.8],lf:[-.12,1],rk:[.08,.8],rf:[.12,1]},
+    dust1:{hd:[0,.1],n:[0,.22],h:[0,.58],le:[-.08,.38],lh:[.03,.46],re:[.08,.38],rh:[-.02,.49],lk:[-.06,.79],lf:[-.08,1],rk:[.06,.79],rf:[.08,1]},
+    dust2:{hd:[0,.1],n:[0,.22],h:[0,.58],le:[-.08,.38],lh:[-.02,.49],re:[.08,.38],rh:[.04,.46],lk:[-.06,.79],lf:[-.08,1],rk:[.06,.79],rf:[.08,1]},
+    lean:{hd:[-.1,.12],n:[-.06,.24],h:[.03,.58],le:[-.26,.44],lh:[-.12,.3],re:[.16,.42],rh:[.06,.56],lk:[.0,.79],lf:[.12,1],rk:[.05,.79],rf:[-.06,1]},
+    hero:{hd:[0,.1],n:[0,.22],h:[0,.58],le:[-.17,.34],lh:[-.06,.52],re:[.17,.34],rh:[.06,.52],lk:[-.1,.79],lf:[-.15,1],rk:[.1,.79],rf:[.15,1]}
+  };
+  var halo=document.createElementNS(svgNS,'path'), fig=document.createElementNS(svgNS,'path'), head=document.createElementNS(svgNS,'circle'), headH=document.createElementNS(svgNS,'circle');
+  halo.setAttribute('class','halo'); fig.setAttribute('class','fig'); headH.setAttribute('class','halo'); head.setAttribute('class','fig headf');
+  stage.appendChild(halo); stage.appendChild(headH); stage.appendChild(fig); stage.appendChild(head);
+  function lerpPose(a,b,u){var o={};for(var k in a){o[k]=[a[k][0]+(b[k][0]-a[k][0])*u,a[k][1]+(b[k][1]-a[k][1])*u]}return o}
+  function draw(pose,x,y,H){
+    var q=function(k){return [x+pose[k][0]*H,y-H+pose[k][1]*H]};
+    var s=function(a){return a[0].toFixed(1)+' '+a[1].toFixed(1)};
+    var d='M'+s(q('n'))+'L'+s(q('h'))+'M'+s(q('n'))+'L'+s(q('le'))+'L'+s(q('lh'))+'M'+s(q('n'))+'L'+s(q('re'))+'L'+s(q('rh'))+'M'+s(q('h'))+'L'+s(q('lk'))+'L'+s(q('lf'))+'M'+s(q('h'))+'L'+s(q('rk'))+'L'+s(q('rf'));
+    var w=Math.max(2.2,H*.05), hd=q('hd'), r=H*.1;
+    fig.setAttribute('d',d); halo.setAttribute('d',d);
+    fig.setAttribute('stroke-width',w); halo.setAttribute('stroke-width',w+5);
+    [head,headH].forEach(function(c){c.setAttribute('cx',hd[0]);c.setAttribute('cy',hd[1]);c.setAttribute('r',r)});
+    head.setAttribute('stroke-width',w); headH.setAttribute('stroke-width',w+5);
+  }
+  function setWords(p){wS.style.transform='translateY('+((1-p)*0.16).toFixed(3)+'em) rotate('+((1-p)*6).toFixed(2)+'deg)'}
+  function measure(){
+    var prev=wS.style.transform; wS.style.transform='none';
+    var c=title.getBoundingClientRect(), fs=parseFloat(getComputedStyle(wS).fontSize);
+    var ir=wI.getBoundingClientRect(), sr=wS.getBoundingClientRect();
+    wS.style.transform=prev;
+    var H=fs*.95, base=sr.top-c.top+fs*.98, iTop=ir.top-c.top+fs*.26;
+    var m={H:H,fs:fs,ix:ir.left-c.left+ir.width/2,iTop:iTop,G:base,sl:sr.left-c.left,sc:sr.left-c.left+sr.width/2,srR:sr.right-c.left,capTop:base-fs*.74,W:c.width};
+    m.room=(m.W-(m.srR+H*.45))>=0;
+    return m;
+  }
+  function finalPose(m){
+    if(m.room) return {x:m.srR+m.H*.27,y:m.G,p:'lean'};
+    return {x:m.sc,y:m.capTop,p:'hero'};
+  }
+  var played=false, raf=0, done=false;
+  function placeFinal(){var m=measure(),f=finalPose(m);setWords(1);draw(P[f.p],f.x,f.y,m.H);done=true}
+  function build(m){
+    var K=[], t=0;
+    function add(dt,x,y,p,w,arc){t+=dt;K.push({t:t,x:x,y:y,p:p,w:w,arc:arc||0})}
+    var xL=m.sl-m.H*.35;
+    add(0,m.ix,m.iTop,'stand',0);
+    add(450,m.ix,m.iTop,'stand',0);
+    add(250,m.ix,m.iTop,'crouch',0);
+    add(700,xL,m.G,'jump',0,Math.max(m.H*.9,Math.abs(m.G-m.iTop)*.35));
+    add(150,xL,m.G,'crouch',0);
+    add(200,xL,m.G,'stand',0);
+    function walk(x0,x1,w){var n=Math.max(2,Math.round(Math.abs(x1-x0)/(m.H*.35)));for(var i=1;i<=n;i++)add(140,x0+(x1-x0)*i/n,m.G,i%2?'walkA':'walkB',w);add(120,x1,m.G,'stand',w)}
+    walk(xL,m.sc-m.H*.15,0);
+    add(300,m.sc-m.H*.15,m.G,'bend',0);
+    add(900,m.sc-m.H*.15,m.G,'lift',1);
+    add(250,m.sc-m.H*.15,m.G,'stand',1);
+    ['dust1','dust2','dust1','dust2'].forEach(function(p){add(150,m.sc-m.H*.15,m.G,p,1)});
+    add(150,m.sc-m.H*.15,m.G,'stand',1);
+    var f=finalPose(m);
+    if(f.p==='lean'){walk(m.sc-m.H*.15,f.x,1);add(450,f.x,f.y,'lean',1)}
+    else{add(200,m.sc-m.H*.15,m.G,'crouch',1);add(550,f.x,f.y,'jump',1,m.H*.6);add(150,f.x,f.y,'crouch',1);add(350,f.x,f.y,'hero',1)}
+    return K;
+  }
+  function ease(u){return u*u*(3-2*u)}
+  function play(){
+    cancelAnimationFrame(raf); done=false;
+    var m=measure(), K=build(m), t0=performance.now();
+    setWords(0);
+    (function frame(now){
+      var t=now-t0, i=1; while(i<K.length&&K[i].t<t)i++;
+      if(i>=K.length){var L=K[K.length-1];setWords(1);draw(P[L.p],L.x,L.y,m.H);done=true;return}
+      var a=K[i-1],b=K[i],u=(t-a.t)/(b.t-a.t),e=ease(u);
+      var x=a.x+(b.x-a.x)*(b.arc?u:e), y=a.y+(b.y-a.y)*(b.arc?u:e)-(b.arc?Math.sin(Math.PI*u)*b.arc:0);
+      setWords(a.w+(b.w-a.w)*e); draw(lerpPose(P[a.p],P[b.p],e),x,y,m.H);
+      raf=requestAnimationFrame(frame);
+    })(t0);
+  }
+  function onHome(){
+    typeFlow();
+    var go=function(){ if(played){ if(done) placeFinal(); return } played=true; reduce?placeFinal():play() };
+    (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){requestAnimationFrame(go)});
+  }
+  document.getElementById('replay').addEventListener('click',function(){reduce?placeFinal():play()});
+  var rt; addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){ if(done&&!document.querySelector('[data-view="home"]').hidden) placeFinal() },150)});
+
+
+  [].slice.call(document.querySelectorAll('.fchip')).forEach(function(b,_,all){
+    b.addEventListener('click',function(){
+      var f=b.dataset.f; all.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+      document.querySelectorAll('[data-view="projects"] .card').forEach(function(c){c.hidden=!(f==='all'||(' '+c.dataset.tags+' ').indexOf(' '+f+' ')>=0)});
+    });
+  });
+
+  /* delivery loop geometry */
+  var lw=document.getElementById('loopwrap');
+  function layoutLoop(){
+    if(!lw||lw.offsetParent===null) return;
+    var c=lw.getBoundingClientRect(), r={};
+    for(var i=1;i<=6;i++){var b=lw.querySelector('.s'+i).getBoundingClientRect();r[i]={l:b.left-c.left,t:b.top-c.top,w:b.width,h:b.height,cx:b.left-c.left+b.width/2,cy:b.top-c.top+b.height/2}}
+    var x1=r[1].cx,x2=r[3].cx,y1=r[1].cy,y2=r[6].cy,k=18;
+    var d='M'+(x1+k)+' '+y1+'H'+(x2-k)+'Q'+x2+' '+y1+' '+x2+' '+(y1+k)+'V'+(y2-k)+'Q'+x2+' '+y2+' '+(x2-k)+' '+y2+'H'+(x1+k)+'Q'+x1+' '+y2+' '+x1+' '+(y2-k)+'V'+(y1+k)+'Q'+x1+' '+y1+' '+(x1+k)+' '+y1+'Z';
+    document.getElementById('looppath').setAttribute('d',d);
+    document.getElementById('loopmotion').setAttribute('path',d);
+    var mid=function(a,b){return [(a.l+a.w+b.l)/2,a.cy]};
+    var pos={'1-2':mid(r[1],r[2]),'2-3':mid(r[2],r[3]),'4-5':[(r[5].l+r[5].w+r[4].l)/2,r[4].cy],'5-6':[(r[6].l+r[6].w+r[5].l)/2,r[5].cy],'3-4':[r[3].cx,(r[3].t+r[3].h+r[4].t)/2],'6-1':[r[1].cx,(r[1].t+r[1].h+r[6].t)/2]};
+    lw.querySelectorAll('.la').forEach(function(el){var p=pos[el.dataset.a];el.style.left=p[0]+'px';el.style.top=p[1]+'px'});
+  }
+  if(lw){
+    lw.addEventListener('pointerover',function(e){if(e.target.closest('.st'))lw.classList.add('dim')});
+    lw.addEventListener('pointerleave',function(){lw.classList.remove('dim')});
+    addEventListener('resize',function(){requestAnimationFrame(layoutLoop)});
+    if(window.ResizeObserver) new ResizeObserver(function(){layoutLoop()}).observe(lw);
+  }
+  addEventListener('hashchange',route); route();
+
+  var b=document.getElementById('copy'), t=document.getElementById('em');
+  b.addEventListener('click',function(){
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)};
+    var sel=function(){var r=document.createRange();r.selectNodeContents(t);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+    try{navigator.clipboard.writeText(t.textContent).then(done,sel)}catch(e){sel()}
+  });
+})();
+</script>
+
+</body>
+</html>
