@@ -7,24 +7,30 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0c12'/%3E%3Crect x='11' y='11' width='10' height='10' rx='2' fill='%238ea2ff'/%3E%3C/svg%3E">
 <link rel="canonical" href="https://anurag-devx.github.io/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Anurag Singh · Multi-agent & RAG systems">
+<meta property="og:title" content="Anurag Singh, multi-agent and RAG systems">
 <meta property="og:description" content="Anurag Singh builds reliable multi-agent and RAG systems, backed by six years of banking and fintech analytics at Citi and Simpl.">
 <meta property="og:url" content="https://anurag-devx.github.io/">
 <meta name="twitter:card" content="summary">
-<title>Anurag Singh · Multi-agent & RAG systems</title>
+<title>Anurag Singh, multi-agent and RAG systems</title>
 <meta name="description" content="Anurag Singh builds reliable multi-agent and RAG systems, backed by six years of banking and fintech analytics at Citi and Simpl.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
+/* Hallmark · shape: tabbed portfolio, four pages · genre: modern-minimal · theme: custom · redesign: full · job: hire · idea: "agents propose, a checker can say no, code enforces" · vibe: "quiet blueprint grid, one electric blue signal"
+ * paper: oklch(16% 0.02 265) · accent: oklch(72% 0.13 270) · display: Unbounded · body: Geist · hero: headline with a stick man who lifts the fallen words · nav: sticky tabs with a theme switch · footer: one line, name and GitHub · imagery: none, the systems drawn as pipelines · signature: the stick man restoring "stay reliable."
+ * axes: dark/geometric-sans/blue · posture: left-aligned statement · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R3 V4 · weakest: R, too many labels and tags; cut every eyebrow and tracked caps label, labels now plain sentence case */
+/* Hallmark · waive 38iii · the accent words appear once, in the hero h1 only · the stick man lifts "stay reliable." back into the headline, so those words must read as a separate object */
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0}
 img{max-width:100%}
-
+/* Hallmark · waive 79 · the hero ends at its last line and Now building starts on the first screen · Anurag asked for no empty band below the collaboration line */
+/* Hallmark · dismissed 77 · the site is four tabbed pages, so the Home view holds only the hero, now building and the live pipeline; Approach, Projects and Experience carry the other sections */
 /* Layout: sticky top bar (mark · page tabs · theme switch) over one page at a time — Home, Approach, Projects, Experience — on a faint blueprint grid */
 :root{
   --bg:#f5f6fa; --panel:#ffffff; --panel-2:#eef0f6; --fg:#12141c; --muted:#5d6378; --line:#dfe2ec; --grid:rgba(40,52,110,.05);
-  --accent:#3b54d6; --accent-soft:#e4e8fb; --check:#b4610f; --check-soft:#f8ebdc; --ok:#1f8a5a;
+  --accent:#3b54d6; --accent-soft:#e4e8fb; --check:#b4610f; --check-soft:#f8ebdc; --ok:#146b44;
   --display:"Unbounded","Avenir Next",system-ui,sans-serif;
   --body:"Geist","Helvetica Neue",Arial,system-ui,sans-serif;
   --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -39,7 +45,7 @@ img{max-width:100%}
 *{box-sizing:border-box}
 ::selection{background:color-mix(in srgb,var(--accent) 32%,transparent);color:var(--fg)}
 [hidden]{display:none!important}
-html,body{min-height:100%}
+html,body{min-height:100%;overflow-x:clip}
 body{
   background-color:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -52,7 +58,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 h1,h2,h3{margin:0;text-wrap:balance}
 h1,h2{font-family:var(--display);font-weight:600;letter-spacing:-.02em}
 h3{font-family:var(--body);font-weight:600;letter-spacing:-.01em}
-.label{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.label{font-family:var(--body);font-size:.85rem;color:var(--muted)}
 .label b{color:var(--accent);font-weight:500}
 
 /* top bar */
@@ -61,11 +67,11 @@ h3{font-family:var(--body);font-weight:600;letter-spacing:-.01em}
 .mark{font-family:var(--mono);font-size:.85rem;color:var(--fg);text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-right:auto}
 .mark i{width:8px;height:8px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
 .tabs{display:flex;gap:4px;flex-wrap:wrap}
-.tabs a{font-size:.88rem;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+.tabs a{font-size:.88rem;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;border:1px solid transparent}
 .tabs a:hover{color:var(--fg)}
 .tabs a[aria-current="page"]{color:var(--fg);border-color:var(--line);background:var(--panel)}
-.switch{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--muted);font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:4px}
-.track{width:38px;height:22px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);position:relative;flex:none}
+.switch{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--muted);font-family:var(--body);font-size:.85rem;cursor:pointer;padding:4px}
+.track{width:38px;height:22px;border-radius:11px;background:var(--panel-2);border:1px solid var(--line);position:relative;flex:none}
 .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--fg);transition:transform .2s ease}
 .switch[aria-checked="true"] .knob{transform:translateX(16px);background:var(--accent);box-shadow:0 0 10px var(--accent)}
 @media (max-width:640px){.tabs{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}}
@@ -75,95 +81,97 @@ main{padding-block:clamp(36px,7vw,80px) 40px}
 .view{display:grid;gap:clamp(36px,6vw,64px)}
 @media (prefers-reduced-motion:no-preference){.view:not([hidden]){animation:slide .35s ease both}@keyframes slide{from{transform:translateY(6px)}to{transform:none}}}
 .head{display:grid;gap:12px;max-width:46rem}
-.head h2{font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.15}
+.head h2{font-size:clamp(2rem,3.8vw,3.25rem);line-height:1.1}
+h2.sub,.contact h2{font-size:clamp(2rem,3.8vw,3.25rem);line-height:1.1}
+.stack > h2.sub{margin:0}
 .head p{margin:0;color:var(--muted)}
 
 /* hero */
-.hero{display:grid;gap:26px}
-.hero h1{font-size:clamp(2.1rem,6vw,4.4rem);line-height:1.06;max-width:16ch}
+.hero{display:grid;gap:24px}
+.hero h1{font-size:clamp(2.6rem,7.6vw,6rem);line-height:1.02;max-width:13ch}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:clamp(1.02rem,1.6vw,1.2rem);max-width:42rem;margin:0}
 .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem}
-.step{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+.step{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
 .step i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .step.c i{background:var(--check)} .step.e i{background:var(--fg)}
 .arrow{color:var(--muted)}
-.cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:8px;font-weight:500;text-decoration:none;font-size:.92rem;border:1px solid var(--line);color:var(--fg);background:var(--panel)}
+.cta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{min-height:44px;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;font-weight:500;text-decoration:none;font-size:.92rem;border:1px solid var(--line);color:var(--fg);background:var(--panel)}
 .btn:hover{border-color:var(--accent)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
 .email{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
-.copy{font:inherit;font-size:.72rem;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:6px;padding:3px 8px;cursor:pointer}
+.copy{min-height:44px;font:inherit;font-size:.72rem;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:6px;padding:4px 8px;cursor:pointer}
 
 /* now building */
 .now{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:12px}
-.now a{display:grid;gap:6px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-decoration:none;color:var(--fg)}
+.now a{display:grid;gap:8px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-decoration:none;color:var(--fg)}
 .now a:hover{border-color:var(--accent)}
 .now b{font-weight:600}
 .now span{color:var(--muted);font-size:.88rem}
-.pulse{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;color:var(--ok);letter-spacing:.04em}
-.pulse::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.pulse{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:.85rem;font-weight:500;color:var(--ok);}
+
 
 /* ledgers */
 .ledger{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .lrow{display:grid;grid-template-columns:1.1fr 1.4fr 1.3fr 1.4fr;border-top:1px solid var(--line)}
 .lrow.rag{grid-template-columns:1fr 2fr 1.4fr}
 .lrow:first-child{border-top:0}
-.lrow > div{padding:14px 18px;min-width:0;font-size:.94rem}
-.lrow.head > div{padding-block:11px;background:var(--panel-2)}
+.lrow > div{padding:16px 16px;min-width:0;font-size:.94rem}
+.lrow.head > div{padding-block:12px;background:var(--panel-2)}
 .lrow .name{font-weight:600}
-.tag{display:inline-block;font-family:var(--mono);font-size:.68rem;padding:2px 7px;border-radius:4px;margin-right:8px}
+.tag{display:inline-block;font-family:var(--body);font-size:.68rem;padding:4px 8px;border-radius:4px;margin-right:8px}
 .t-p{background:var(--accent-soft);color:var(--accent)} .t-c{background:var(--check-soft);color:var(--check)} .t-e{background:var(--panel-2);color:var(--fg);border:1px solid var(--line)}
 .tag.cell-l{display:none}
 @media (max-width:760px){
-  .lrow,.lrow.rag{grid-template-columns:1fr;padding-block:6px}
+  .lrow,.lrow.rag{grid-template-columns:1fr;padding-block:8px}
   .lrow.head{display:none}
-  .lrow > div{padding:5px 16px}
-  .lrow .name{padding-top:14px}
+  .lrow > div{padding:4px 16px}
+  .lrow .name{padding-top:16px}
   .tag.cell-l{display:inline-block}
 }
 
 /* projects */
 .group-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.cards{display:grid;gap:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:clamp(18px,3vw,28px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,16rem);gap:18px 34px}
+.cards{display:grid;gap:16px}
+.card{color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:clamp(16px,3vw,28px);display:grid;grid-template-columns:1fr;gap:16px}
 .card.active{border-left:2px solid var(--accent)}
 .card h3{font-size:clamp(1.2rem,2.2vw,1.5rem)}
 .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
-.status{font-family:var(--mono);font-size:.68rem;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
-.main{display:grid;gap:10px;min-width:0}
+.status{font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:.68rem;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.main{display:grid;gap:8px;min-width:0}
 .main p{margin:0;max-width:62ch}
 .main ul{margin:0;padding-left:1.1rem;display:grid;gap:4px;max-width:62ch}
-.side{display:grid;gap:14px;align-content:start;font-size:.88rem;min-width:0;overflow-wrap:anywhere}
-.k{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.pipe{display:grid;gap:5px;font-family:var(--mono);font-size:.78rem}
+.side{display:grid;gap:16px;align-content:start;font-size:.88rem;min-width:0;overflow-wrap:anywhere}
+.k{font-family:var(--body);font-size:.8rem;font-weight:500;color:var(--muted);margin-bottom:4px}
+.pipe{display:grid;gap:4px;font-family:var(--mono);font-size:.78rem}
 .pipe span{display:flex;gap:8px;align-items:center}
 .pipe span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 .pipe span.c::before{background:var(--check)}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips span{font-size:.76rem;padding:2px 8px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:.76rem;padding:4px 8px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line)}
 @media (max-width:760px){.card{grid-template-columns:1fr}}
 
 /* experience */
 .jobs{display:grid}
-.job{display:grid;grid-template-columns:10.5rem minmax(0,1fr);gap:6px 30px;padding-block:22px;border-top:1px solid var(--line)}
+.job{display:grid;grid-template-columns:10.5rem minmax(0,1fr);gap:8px 48px;padding-block:24px;border-top:1px solid var(--line)}
 .job:first-child{border-top:0;padding-top:0}
-.when{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:3px}
+.when{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:4px}
 .job h3{font-size:1.15rem}
-.role{color:var(--muted);margin:2px 0 10px;font-size:.94rem}
+.role{color:var(--muted);margin:4px 0 8px;font-size:.94rem}
 .job ul{margin:0;padding-left:1.1rem;display:grid;gap:4px;max-width:64ch}
 @media (max-width:640px){.job{grid-template-columns:1fr}}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:28px}
-.stack{display:grid;gap:10px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:48px}
+.stack{display:grid;gap:8px}
 .stack h3{font-size:.95rem}
 .edu{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.edu li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.edu li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:8px}
 .edu li > span:last-child{font-family:var(--mono);font-size:.8rem;color:var(--muted);white-space:nowrap}
 .edu small{display:block;color:var(--muted);font-size:.86rem}
 
 /* contact strip */
-.contact{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:clamp(20px,4vw,36px);display:grid;gap:14px}
-.contact h2{font-size:clamp(1.3rem,3vw,1.9rem)}
+.contact{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;column-gap:48px;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:clamp(20px,4vw,36px);display:grid;gap:16px}
+
 .contact p{margin:0;color:var(--muted)}
 
 /* approach: rectangular delivery loop */
@@ -173,24 +181,27 @@ main{padding-block:clamp(36px,7vw,80px) 40px}
 .looptrack{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
 .looptrack path{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 9;opacity:.55}
 .looptrack .token{fill:var(--accent);filter:drop-shadow(0 0 8px var(--accent))}
-.la{position:absolute;z-index:2;transform:translate(-50%,-50%);font-family:var(--mono);font-size:.9rem;color:var(--accent);background:var(--bg);border:1px solid var(--line);border-radius:999px;width:26px;height:26px;display:grid;place-items:center;line-height:1}
+.la{position:absolute;z-index:2;transform:translate(-50%,-50%);font-family:var(--mono);font-size:.9rem;color:var(--accent);background:var(--bg);border:1px solid var(--line);border-radius:8px;width:28px;height:28px;display:grid;place-items:center;line-height:1}
 .loop{list-style:none;margin:0;padding:0;position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:44px 48px;grid-template-areas:"a b c" "f e d"}
-.st{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px;align-content:start;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.st{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;align-content:start;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
 .s1{grid-area:a}.s2{grid-area:b}.s3{grid-area:c}.s4{grid-area:d}.s5{grid-area:e}.s6{grid-area:f}
-.no{justify-self:start;font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.08em;border:1px solid var(--accent);border-radius:999px;padding:1px 9px;transition:background .25s ease,color .25s ease}
-.st h3{font-size:1.05rem}
-.st p{margin:0;font-size:.88rem;display:grid;gap:2px}
-.st p b{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+
+.loop{counter-reset:stage}
+.st{counter-increment:stage}
+.st h3{font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.st h3::before{content:counter(stage);display:inline-grid;place-items:center;min-width:28px;height:28px;font-size:.85rem;font-weight:500;font-variant-numeric:tabular-nums;color:var(--accent);border:1px solid var(--accent);border-radius:8px;transition:background .25s ease,color .25s ease}
+.st p{margin:0;font-size:.88rem;display:grid;gap:4px}
+.st p b{font-family:var(--body);font-size:.8rem;font-weight:500}
 .st .q b{color:var(--check)} .st .w b{color:var(--accent)}
 .st .w{color:var(--muted)}
 .st:hover,.st:focus-within{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 14px 34px -18px var(--accent)}
-.st:hover .no{background:var(--accent);color:var(--bg)}
+.st:hover h3::before{background:var(--accent);color:var(--bg)}
 .st > *{transition:opacity .25s ease}
 .loopwrap.dim .st:not(:hover) > *{opacity:.5}
 .loopback{font-family:var(--mono);font-size:.78rem;color:var(--muted);display:flex;gap:8px;align-items:center}
 .loopback span{color:var(--accent);font-size:1.1rem}
 @media (max-width:760px){
-  .loop{grid-template-columns:1fr;grid-auto-rows:auto;grid-template-areas:none;gap:30px}
+  .loop{grid-template-columns:1fr;grid-auto-rows:auto;grid-template-areas:none;gap:32px}
   .st{grid-area:auto!important}
   .looptrack,.la{display:none}
   .st:not(:last-child)::after{content:"↓";position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);color:var(--accent);font-family:var(--mono)}
@@ -199,19 +210,19 @@ main{padding-block:clamp(36px,7vw,80px) 40px}
 @media (prefers-reduced-motion:no-preference){.looptrack path{animation:march 1.2s linear infinite}@keyframes march{to{stroke-dashoffset:-15}}}
 @media (prefers-reduced-motion:reduce){.looptrack .token{display:none}.st{transition:none}}
 .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:12px}
-.pr{border-top:2px solid var(--accent);background:var(--panel);border-radius:0 0 10px 10px;padding:16px;display:grid;gap:6px}
+.pr{border-top:2px solid var(--accent);background:var(--panel);border-radius:0 0 10px 10px;padding:16px;display:grid;gap:8px}
 .pr h3{font-size:1rem} .pr p{margin:0;color:var(--muted);font-size:.9rem}
 .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media (max-width:760px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:460px){.metrics{grid-template-columns:1fr}}
-.mt{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:6px}
+.mt{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:8px}
 .mk{font-family:var(--mono);font-size:.78rem;color:var(--accent);display:flex;align-items:center;gap:8px}
 .mk::before{content:"";width:8px;height:8px;border-radius:2px;background:currentColor}
 .mt.c .mk{color:var(--check)} .mt.e .mk{color:var(--fg)}
 .mt p{margin:0;font-size:.88rem;color:var(--muted)}
 .bridge{display:grid;gap:8px}
 .br{display:grid;grid-template-columns:minmax(0,1fr) 2rem minmax(0,1fr);align-items:center;gap:8px}
-.br span{padding:12px 14px;border-radius:10px;font-size:.9rem}
+.br span{padding:12px 16px;border-radius:10px;font-size:.9rem}
 .from{background:var(--panel-2);border:1px solid var(--line)}
 .into{background:var(--accent-soft);color:var(--fg);border:1px solid var(--accent)}
 .to{text-align:center;color:var(--accent);font-family:var(--mono);padding:0!important}
@@ -219,14 +230,14 @@ main{padding-block:clamp(36px,7vw,80px) 40px}
 
 /* projects: visual cards */
 .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.fchip{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:5px 14px;cursor:pointer}
+.fchip{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:4px 16px;cursor:pointer}
 .fchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-.legend{margin-left:auto;display:flex;gap:6px 12px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
-.lg{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:-6px}
+.legend{margin-left:auto;display:flex;gap:8px 12px;align-items:center;flex-wrap:wrap;font-family:var(--body);font-size:.7rem;color:var(--muted)}
+.lg{width:10px;height:10px;border-radius:3px;display:inline-block}
 .lg.p{background:var(--accent)} .lg.c{background:var(--check)} .lg.e{background:var(--fg)}
-.card{display:grid;grid-template-columns:1fr;gap:14px}
-.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:14px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}
-.n{font-family:var(--mono);font-size:.76rem;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);white-space:nowrap}
+.card{display:grid;grid-template-columns:1fr;gap:16px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:16px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}
+.n{font-family:var(--mono);font-size:.76rem;padding:8px 8px;border-radius:6px;border:1px solid var(--line);background:var(--panel);white-space:nowrap}
 .n.p{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 .n.c{border-color:var(--check);color:var(--check);background:var(--check-soft)}
 .n.e{border-color:var(--fg);color:var(--fg)}
@@ -235,16 +246,16 @@ main{padding-block:clamp(36px,7vw,80px) 40px}
 .pair{display:inline-grid;gap:4px}
 .ar{color:var(--muted);font-family:var(--mono);font-size:.8rem}
 .pitch{margin:0;font-size:1.02rem;max-width:62ch}
-.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .specs > div{font-size:.86rem;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
-.sk{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.sk{display:block;font-family:var(--body);font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:4px}
 .sk.c{color:var(--check)} .sk.e{color:var(--fg)}
 @media (max-width:700px){.specs{grid-template-columns:1fr}}
 details{font-size:.9rem}
-summary{cursor:pointer;font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+summary{cursor:pointer;font-family:var(--body);font-size:.85rem;color:var(--muted)}
 summary:hover{color:var(--fg)}
 details ul{margin:8px 0 0;padding-left:1.1rem;display:grid;gap:4px;max-width:64ch}
-.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .foot a{font-family:var(--mono);font-size:.8rem;text-decoration:none}
 .cards.small{grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
 .cards.small .card{align-content:start}
@@ -253,15 +264,16 @@ details ul{margin:8px 0 0;padding-left:1.1rem;display:grid;gap:4px;max-width:64c
 .hero{overflow-x:clip}
 .title{position:relative}
 #w-sr{display:inline-block;white-space:nowrap;transform-origin:0% 100%}
+@media (max-width:640px){#w-sr{display:block;width:max-content}}
 .stage{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .stage .halo{stroke:var(--bg);fill:none;stroke-linecap:round;stroke-linejoin:round}
 .stage .fig{stroke:var(--accent);fill:none;stroke-linecap:round;stroke-linejoin:round}
 .stage .headf{fill:var(--bg)}
-.replay{justify-self:start;margin-top:-4px;font-family:var(--mono);font-size:.7rem;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
+.replay{justify-self:start;min-height:44px;margin-top:-4px;font-family:var(--mono);font-size:.7rem;color:var(--muted);background:none;border:1px solid var(--line);border-radius:8px;padding:4px 8px;cursor:pointer}
 .replay:hover{color:var(--fg);border-color:var(--accent)}
 
 /* live pipeline */
-.pipeline-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto}
+.pipeline-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto}
 .pipeline{display:block;width:100%;min-width:620px;height:auto}
 .pipeline .edges path{fill:none;stroke:var(--line);stroke-width:2}
 .pipeline rect{fill:var(--panel-2);stroke:var(--line);stroke-width:1}
@@ -272,19 +284,19 @@ details ul{margin:8px 0 0;padding-left:1.1rem;display:grid;gap:4px;max-width:64c
 .pipeline .dot{fill:var(--accent);filter:drop-shadow(0 0 6px var(--accent))}
 
 /* debate replay */
-.hearing{display:grid;gap:8px;margin-top:6px;max-width:34rem}
-.say,.verdict{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.88rem;background:var(--panel-2)}
-.say b,.verdict b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.hearing{display:grid;gap:8px;margin-top:8px;max-width:34rem}
+.say,.verdict{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.88rem;background:var(--panel-2)}
+.say b,.verdict b{display:block;font-family:var(--body);font-size:.8rem;margin-bottom:4px}
 .say.pro b{color:var(--check)} .say.def b{color:var(--accent)}
 .say.def{margin-left:clamp(0px,6vw,48px)}
 .verdict{border-color:var(--ok)} .verdict b{color:var(--ok)} .verdict span{color:var(--muted)}
 
 /* benchmark race */
-.race{display:grid;gap:8px;margin-top:6px;max-width:34rem}
-.lane{display:grid;grid-template-columns:6.5rem minmax(0,1fr) 5.5rem;gap:10px;align-items:center;font-size:.85rem}
+.race{display:grid;gap:8px;margin-top:8px;max-width:34rem}
+.lane{display:grid;grid-template-columns:6.5rem minmax(0,1fr) 5.5rem;gap:8px;align-items:center;font-size:.85rem}
 .who{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
-.track2{height:10px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}
-.fill{display:block;height:100%;border-radius:999px}
+.track2{height:12px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}
+.fill{display:block;height:100%;border-radius:999px;transform-origin:0 50%}
 .fill.fast{width:8.7%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
 .fill.slow{width:100%;background:var(--check)}
 .res{font-family:var(--mono);font-size:.75rem;text-align:right;white-space:nowrap}
@@ -310,12 +322,73 @@ main,footer,.bar{position:relative;z-index:1}
   .fill.slow{animation:grow-slow 6s linear both}
   .res{animation:show 0s both}
   .res.ok{animation-delay:1.2s} .res.bad{animation-delay:6s}
-  @keyframes grow-fast{from{width:0}to{width:8.7%}}
-  @keyframes grow-slow{from{width:0}to{width:100%}}
+  @keyframes grow-fast{from{transform:scaleX(0)}to{transform:none}}
+  @keyframes grow-slow{from{transform:scaleX(0)}to{transform:none}}
   @keyframes show{from{visibility:hidden}to{visibility:visible}}
 }
 
-footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono)}
+footer .wrap{padding-block:24px 32px;color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono)}
+
+.ctext{display:grid;gap:12px}
+.cstack{flex-direction:column;align-items:stretch}
+.cstack .btn{justify-content:center}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+
+/* projects: vertical process chart */
+.pbody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:start}
+.pbody.one{grid-template-columns:1fr}
+.flowv{list-style:none;margin:0;padding:0;counter-reset:fs;display:grid}
+.fs{counter-increment:fs;position:relative;padding:0 0 20px 44px;--c:var(--muted)}
+.fs:last-child{padding-bottom:0}
+.fs::before{content:counter(fs);position:absolute;left:0;top:0;width:28px;height:28px;display:grid;place-items:center;border-radius:8px;border:1.5px solid var(--c);color:var(--c);background:var(--panel);font-size:.82rem;font-weight:600;font-variant-numeric:tabular-nums;z-index:1}
+.fs::after{content:"";position:absolute;left:13px;top:32px;bottom:4px;width:2px;border-radius:2px;background:color-mix(in srgb,var(--muted) 45%,transparent)}
+.fs:last-child::after{display:none}
+.fs.ag{--c:var(--accent)} .fs.ck{--c:var(--check)} .fs.cd{--c:var(--fg)} .fs.rt{--c:var(--accent)}
+.fs.rt::before{border-style:dashed}
+.fs.ck::before{background:var(--check-soft)} .fs.ag::before{background:var(--accent-soft)}
+.ft{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding-top:4px}
+.ft b{font-weight:600}
+.role{font-size:.8rem;color:var(--c)}
+.fs p{margin:4px 0 0;font-size:.9rem;color:var(--muted);max-width:44ch}
+.pside{display:grid;gap:16px;align-content:start}
+.specs2{display:grid;gap:8px}
+.specs2 > div{font-size:.88rem;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
+.legend > span{display:inline-flex;align-items:center;gap:4px}
+.lg.ag{background:var(--accent)} .lg.rt{background:transparent;border:1.5px dashed var(--accent)} .lg.ck{background:var(--check)} .lg.cd{background:var(--fg)}
+@media (max-width:760px){.pbody{grid-template-columns:1fr}}
+.plink{color:inherit;text-decoration:none}
+.plink:hover{color:var(--accent);text-decoration:underline}
+.plink span{font-size:.8em;color:var(--accent)}
+.card,.proj{scroll-margin-top:88px}
+.card.flash{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+/* projects: collapsible list */
+.plist{display:grid;border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.pgroup{padding:12px 20px;font-size:.85rem;color:var(--muted);background:var(--panel-2);border-top:1px solid var(--line)}
+.pgroup:first-child{border-top:0}
+.proj{border-top:1px solid var(--line)}
+.proj > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,13rem) minmax(0,10rem) minmax(0,1fr) auto;gap:4px 24px;align-items:center;padding:16px 20px;transition:background .2s ease}
+.proj > summary::-webkit-details-marker{display:none}
+.proj > summary:hover{background:var(--panel-2)}
+.proj > summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.pname{font-weight:600;font-size:1.05rem}
+.proj.active .pname{color:var(--fg)}
+.pstat{font-size:.85rem;color:var(--ok)}
+.proj:not(.active) .pstat{color:var(--muted)}
+.ppitch{color:var(--muted);font-size:.92rem}
+.ptags{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.ptag{font-size:.78rem;padding:2px 8px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.pmore{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;border:1px solid var(--line);margin-left:4px}
+.pmore::before{content:"+";font-size:1rem;color:var(--accent);transition:transform .2s ease}
+.proj[open] .pmore::before{transform:rotate(45deg)}
+.proj[open] > summary{background:var(--panel-2)}
+.proj > .pbody{padding:24px 20px 28px;border-top:1px dashed var(--line)}
+.proj.flash > summary{box-shadow:inset 3px 0 0 var(--accent)}
+.codelink{font-size:.88rem}
+@media (max-width:860px){.proj > summary{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n m" "s m" "p p"}.pname{grid-area:n}.pstat{grid-area:s}.ppitch{grid-area:p}.ptags{grid-area:m}.ptag{display:none}}
+/* control states */
+.btn:active,.fchip:active,.copy:active,.replay:active,.switch:active,.tabs a:active{transform:scale(.97)}
+button:disabled,.btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -342,13 +415,12 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
   <!-- HOME -->
   <div class="view" data-view="home">
     <section class="hero">
-      <div class="label"><b>●</b> Multi-agent &amp; RAG systems</div>
       <div class="title">
-        <h1><span id="w-i">I</span> build multi-agent and RAG systems that <em id="w-sr">stay reliable.</em></h1>
+        <h1><span id="w-i">I</span> build agents that <em id="w-sr">stay reliable.</em></h1>
         <svg class="stage" id="stage" aria-hidden="true"></svg>
       </div>
       <button class="replay" id="replay" type="button" aria-label="Replay the headline animation">↻ replay</button>
-      <p class="lede">Six years of analytics in banking and fintech at Citi and Simpl, now building GenAI systems hands-on. Retrieval keeps agents grounded in real evidence, agents make the judgements, code enforces the rules, and a checker can always say no.</p>
+      <p class="lede">Multi-agent and RAG systems, built with six years of banking analytics discipline.</p>
       <div class="flow" aria-label="Design pattern">
         <span class="step"><i></i>retrieval grounds</span><span class="arrow" aria-hidden="true">→</span>
         <span class="step"><i></i>agents propose</span><span class="arrow" aria-hidden="true">→</span>
@@ -361,11 +433,11 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
         <a class="btn" href="https://github.com/anurag-devx" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/anurag-singh-037a83103/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <div><span class="pulse">OPEN FOR COLLABORATION &amp; DISCUSSION</span></div>
+      <div><span class="pulse">Open for collaboration and discussion</span></div>
     </section>
 
     <section class="stack" aria-labelledby="live-h">
-      <div class="group-title"><h2 id="live-h" style="font-size:1.1rem">How a request moves</h2><span class="label">Live pipeline</span></div>
+      <h2 id="live-h" class="sub">How a request moves</h2>
       <div class="pipeline-box">
         <svg class="pipeline" id="pipeline" viewBox="0 0 960 150" role="img" aria-label="A query is retrieved against evidence, two agents propose answers, a checker reviews them, code enforces the rules, and a verified answer comes out">
           <g class="edges">
@@ -388,12 +460,12 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
     </section>
 
     <section class="stack" aria-labelledby="now-h">
-      <div class="group-title"><h2 id="now-h" style="font-size:1.1rem">Now building</h2><span class="label">Actively improving</span></div>
+      <h2 id="now-h" class="sub">Now building</h2>
       <div class="now">
-        <a href="#projects"><span class="pulse">LATEST</span><b>RAG security scanner</b><span>Prompt-injection and data-leak testing for RAG apps</span></a>
-        <a href="#projects"><span class="pulse">ACTIVE</span><b>Forward Court</b><span>Multi-agent fact-checker · Meta Hackathon 2026</span></a>
-        <a href="#projects"><span class="pulse">ACTIVE</span><b>MarketX</b><span>Multi-agent equity research on local LLMs</span></a>
-        <a href="#projects"><span class="pulse">ACTIVE</span><b>offline-agent</b><span>Open-source framework for reliable local agents</span></a>
+        <a href="#projects" data-card="p-scanner"><span class="pulse">Latest</span><b>RAG security scanner</b><span>Prompt-injection and data-leak testing for RAG apps</span></a>
+        <a href="#projects" data-card="p-forward-court"><span class="pulse">Active</span><b>Forward Court</b><span>Multi-agent fact-checker for the Meta Hackathon 2026</span></a>
+        <a href="#projects" data-card="p-marketx"><span class="pulse">Active</span><b>MarketX</b><span>Multi-agent equity research on local LLMs</span></a>
+        <a href="#projects" data-card="p-offline-agent"><span class="pulse">Active</span><b>offline-agent</b><span>Open-source framework for reliable local agents</span></a>
       </div>
     </section>
   </div>
@@ -402,21 +474,20 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
   <div class="view" data-view="approach" hidden>
     <section class="stack">
       <div class="head">
-        <div class="label"><b>01</b> How I work</div>
-        <h2>A delivery loop for AI systems</h2>
-        <p>I run every build like a product with a metric attached. Each stage asks the product question first, then sets the engineering artifact that answers it. The loop closes when production numbers feed the next decision.</p>
+        <h2>How I work</h2>
+        <p>I run every AI build as a delivery loop: six stages, each with a product question and the thing I build to answer it.</p>
       </div>
       <p class="key"><span class="kq">The question</span> comes first, then <span class="kw">what I build</span> to answer it.</p>
       <div class="loopwrap" id="loopwrap">
         <svg class="looptrack" id="looptrack" aria-hidden="true"><path id="looppath" d=""/><circle class="token" r="5"><animateMotion id="loopmotion" dur="9s" repeatCount="indefinite" path="M0 0"/></circle></svg>
         <span class="la" data-a="1-2" aria-hidden="true">→</span><span class="la" data-a="2-3" aria-hidden="true">→</span><span class="la" data-a="3-4" aria-hidden="true">↓</span><span class="la" data-a="4-5" aria-hidden="true">←</span><span class="la" data-a="5-6" aria-hidden="true">←</span><span class="la" data-a="6-1" aria-hidden="true">↑</span>
         <ol class="loop">
-          <li class="st s1"><span class="no">01</span><h3>Frame the decision</h3><p class="q"><b>The question</b>Who acts on this output, and what does a wrong answer cost?</p><p class="w"><b>What I build</b>A success metric and a guardrail metric, written before any code.</p></li>
-          <li class="st s2"><span class="no">02</span><h3>Get the data right</h3><p class="q"><b>The question</b>What do we actually know, and when did we know it?</p><p class="w"><b>What I build</b>Point-in-time tables, data contracts and quality checks with control limits.</p></li>
-          <li class="st s3"><span class="no">03</span><h3>Design the agents</h3><p class="q"><b>The question</b>Which steps need judgement, and which need rules?</p><p class="w"><b>What I build</b>One job per agent. Code executes. A checker can veto.</p></li>
-          <li class="st s4"><span class="no">04</span><h3>Ground and evaluate</h3><p class="q"><b>The question</b>How will we know it works before users find out?</p><p class="w"><b>What I build</b>A labelled eval set and a simple baseline. It ships only if it beats the baseline.</p></li>
-          <li class="st s5"><span class="no">05</span><h3>Guard in code</h3><p class="q"><b>The question</b>What must never happen, whatever the model says?</p><p class="w"><b>What I build</b>Permission policy, approval gates and an audit log.</p></li>
-          <li class="st s6"><span class="no">06</span><h3>Run and measure</h3><p class="q"><b>The question</b>Is it still worth what it costs?</p><p class="w"><b>What I build</b>Drift, veto, override and cost-per-decision tracking that feeds stage 01.</p></li>
+          <li class="st s1"><h3>Frame the decision</h3><p class="q"><b>The question</b>Who acts on this output, and what does a wrong answer cost?</p><p class="w"><b>What I build</b>A success metric and a guardrail metric, written before any code.</p></li>
+          <li class="st s2"><h3>Get the data right</h3><p class="q"><b>The question</b>What do we actually know, and when did we know it?</p><p class="w"><b>What I build</b>Point-in-time tables, data contracts and quality checks with control limits.</p></li>
+          <li class="st s3"><h3>Design the agents</h3><p class="q"><b>The question</b>Which steps need judgement, and which need rules?</p><p class="w"><b>What I build</b>One job per agent. Code executes. A checker can veto.</p></li>
+          <li class="st s4"><h3>Ground and evaluate</h3><p class="q"><b>The question</b>How will we know it works before users find out?</p><p class="w"><b>What I build</b>A labelled eval set and a simple baseline. It ships only if it beats the baseline.</p></li>
+          <li class="st s5"><h3>Guard in code</h3><p class="q"><b>The question</b>What must never happen, whatever the model says?</p><p class="w"><b>What I build</b>Permission policy, approval gates and an audit log.</p></li>
+          <li class="st s6"><h3>Run and measure</h3><p class="q"><b>The question</b>Is it still worth what it costs?</p><p class="w"><b>What I build</b>Drift, veto, override and cost-per-decision tracking that feeds stage 01.</p></li>
         </ol>
       </div>
       <div class="loopback"><span>↺</span> Stage 06 feeds stage 01: production numbers shape the next decision.</div>
@@ -424,22 +495,20 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
 
     <section class="stack">
       <div class="head">
-        <div class="label"><b>02</b> Principles</div>
-        <h2>What I hold to</h2>
+        <h2>Principles</h2>
       </div>
       <div class="principles">
         <div class="pr"><h3>A baseline before a model</h3><p>If a rule or a SQL query gets most of the way, the agent has to beat that, not zero.</p></div>
-        <div class="pr"><h3>Unverifiable beats confidently wrong</h3><p>A system that says "not enough evidence" keeps trust. One wrong verdict can lose it.</p></div>
+        <div class="pr"><h3>Unverifiable beats confidently wrong</h3><p>A system that says “not enough evidence” keeps trust. One wrong verdict can lose it.</p></div>
         <div class="pr"><h3>Small models, small decisions</h3><p>Shrink what the model has to decide. Let deterministic code do the rest.</p></div>
         <div class="pr"><h3>Safety lives in code</h3><p>A prompt can be ignored or injected. A permission check cannot be talked out of.</p></div>
         <div class="pr"><h3>Cost per decision is a product metric</h3><p>Tokens and latency belong on the same dashboard as accuracy.</p></div>
-        <div class="pr"><h3>If it isn't logged, it didn't happen</h3><p>Every input, retrieval, output and approval is traceable after the fact.</p></div>
+        <div class="pr"><h3>If it isn’t logged, it didn’t happen</h3><p>Every input, retrieval, output and approval is traceable after the fact.</p></div>
       </div>
     </section>
 
     <section class="stack">
       <div class="head">
-        <div class="label"><b>03</b> Metrics</div>
         <h2>What I track in agent systems</h2>
         <p>Accuracy alone hides most failures. These six numbers tell me where a system is breaking.</p>
       </div>
@@ -455,7 +524,6 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
 
     <section class="stack">
       <div class="head">
-        <div class="label"><b>04</b> My edge</div>
         <h2>Where analytics meets agents</h2>
         <p>Six years in banking analytics taught me disciplines most agent builds skip. I carry them straight across.</p>
       </div>
@@ -473,103 +541,57 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
   <div class="view" data-view="projects" hidden>
     <section class="stack">
       <div class="head">
-        <div class="label"><b>●</b> Active · constantly improving</div>
-        <h2>What I'm building</h2>
+        <h2>Projects</h2>
+        <p>Open any project to see how it works, step by step.</p>
       </div>
       <div class="filters" role="toolbar" aria-label="Filter projects">
         <button class="fchip" data-f="all" aria-pressed="true">All</button>
         <button class="fchip" data-f="multi" aria-pressed="false">Multi-agent</button>
         <button class="fchip" data-f="rag" aria-pressed="false">RAG</button>
         <button class="fchip" data-f="security" aria-pressed="false">Security</button>
-        <span class="legend"><i class="lg p"></i>proposes <i class="lg c"></i>checks <i class="lg e"></i>enforced in code</span>
+        <span class="legend"><span><i class="lg ag"></i>agent</span><span><i class="lg rt"></i>retrieval</span><span><i class="lg ck"></i>checker</span><span><i class="lg cd"></i>code</span></span>
       </div>
-      <div class="cards">
-
-        <article class="card active" data-tags="security rag">
-          <div class="top"><h3>RAG security scanner</h3><span class="pulse">LATEST · NOV 2026</span></div>
-          <div class="chain"><span class="n io">RAG app</span><span class="ar">→</span><span class="pair"><span class="n p">injection probes</span><span class="n p">leak probes</span></span><span class="ar">→</span><span class="n c">response analysis</span><span class="ar">→</span><span class="n e">findings report</span></div>
-          <p class="pitch">Tests RAG applications for prompt injection and data leaks, so teams find weak spots before attackers do.</p>
-          <div class="specs"><div><span class="sk">Problem</span>RAG apps tend to trust whatever they retrieve.</div><div><span class="sk c">Check</span>Did the app follow hidden instructions or expose sensitive data?</div><div><span class="sk e">Output</span>Findings with the probe that triggered each one.</div></div>
-          <div class="foot"><div class="chips"><span>Prompt injection</span><span>Data leakage</span><span>LLM security</span></div></div>
-        </article>
-
-        <article class="card active" data-tags="multi rag">
-          <div class="top"><h3>Forward Court</h3><span class="pulse">ACTIVE</span><span class="status">Meta Global AI Developer Hackathon 2026</span></div>
-          <div class="chain"><span class="n io">forward</span><span class="ar">→</span><span class="n p">claim intake</span><span class="ar">→</span><span class="n r">evidence retrieval</span><span class="ar">→</span><span class="pair"><span class="n p">prosecutor</span><span class="n p">defender</span></span><span class="ar">→</span><span class="n c">judge</span><span class="ar">→</span><span class="n e">verdict card</span></div>
-          <p class="pitch">A multi-agent fact-checker for viral WhatsApp forwards that answers with a short, sourced verdict.</p>
-          <div class="specs"><div><span class="sk">Problem</span>Viral forwards spread faster than fact-checks.</div><div><span class="sk c">Check</span>The judge rules only on points tied to evidence.</div><div><span class="sk e">Guardrail</span>Every point cites a source; the forward is data, never instructions.</div></div>
-          <div class="hearing" aria-label="Example hearing, illustrative">
-            <div class="k">Example hearing · illustrative</div>
+      <div class="plist">
+        <div class="pgroup">Active, improved every week</div>
+        <details class="proj active" id="p-scanner" data-tags="security rag">
+          <summary><span class="pname">RAG security scanner</span><span class="pstat">Latest, Nov 2026</span><span class="ppitch">Tests RAG apps for prompt injection and data leaks before attackers do.</span><span class="ptags"><span class="ptag">Security</span><span class="ptag">RAG</span><span class="pmore" aria-hidden="true"></span></span></summary>
+          <div class="pbody"><ol class="flowv" aria-label="How it works, step by step"><li class="fs in"><div class="ft"><b>Point it at a RAG app</b><span class="role">input</span></div><p>The scanner targets a running RAG application and its document index.</p></li><li class="fs ag"><div class="ft"><b>Injection probes</b><span class="role">agent</span></div><p>Questions and planted documents try to slip hidden instructions past the app.</p></li><li class="fs ag"><div class="ft"><b>Leak probes</b><span class="role">agent</span></div><p>Queries try to pull sensitive data from the index into answers.</p></li><li class="fs ck"><div class="ft"><b>Response analysis</b><span class="role">checker</span></div><p>Each answer is checked: did the app obey a hidden instruction or expose data?</p></li><li class="fs out"><div class="ft"><b>Findings report</b><span class="role">output</span></div><p>Every finding comes with the probe that triggered it.</p></li></ol><div class="pside"><div class=specs2><div><span class="sk">Problem</span>RAG apps tend to trust whatever they retrieve.</div><div><span class="sk c">What it checks</span>Hidden instructions followed, and sensitive data exposed.</div></div><div class="foot"><div class="chips"><span>Prompt injection</span><span>Data leakage</span><span>LLM security</span></div></div></div></div>
+        </details>
+        <details class="proj active" id="p-forward-court" data-tags="multi rag">
+          <summary><span class="pname">Forward Court</span><span class="pstat">Active, Meta Hackathon 2026</span><span class="ppitch">A multi-agent fact-checker for viral WhatsApp forwards.</span><span class="ptags"><span class="ptag">Multi-agent</span><span class="ptag">RAG</span><span class="pmore" aria-hidden="true"></span></span></summary>
+          <div class="pbody"><ol class="flowv" aria-label="How it works, step by step"><li class="fs in"><div class="ft"><b>Forward arrives</b><span class="role">input</span></div><p>A user sends in a viral WhatsApp message.</p></li><li class="fs ag"><div class="ft"><b>Claims split</b><span class="role">agent</span></div><p>The message is broken into separate claims that can be checked.</p></li><li class="fs rt"><div class="ft"><b>Evidence found</b><span class="role">retrieval</span></div><p>Sources are gathered for each claim, and every fact keeps its source.</p></li><li class="fs ag"><div class="ft"><b>Both sides argue</b><span class="role">agent</span></div><p>A prosecutor argues the claim is false and a defender argues it is true, from the same evidence.</p></li><li class="fs ck"><div class="ft"><b>Judge rules</b><span class="role">checker</span></div><p>Any point without evidence is dropped. Thin evidence means “unverifiable”.</p></li><li class="fs out"><div class="ft"><b>Verdict card</b><span class="role">output</span></div><p>A short card you can share, with its sources listed.</p></li></ol><div class="pside"><div class=specs2><div><span class="sk">Problem</span>Viral forwards spread faster than fact-checks.</div><div><span class="sk e">Guardrail</span>Every point cites a source; the forward is data, never instructions.</div></div><div class="hearing" aria-label="Example hearing, illustrative">
+            <div class="k">Example hearing (illustrative)</div>
             <div class="say pro"><b>Prosecutor</b>The photo is from an event two years ago, not this week. [source 1]</div>
             <div class="say def"><b>Defender</b>The event in the message did happen this week. [sources 2, 3]</div>
-            <div class="verdict"><b>Verdict: Misleading</b><span>Real event, wrong photo · 3 sources cited</span></div>
-          </div>
-          <details><summary>Details</summary><ul>
-            <li>Splits each forward into separate checkable claims before any agent argues.</li>
-            <li>Returns "unverifiable" when evidence is thin rather than guessing.</li>
-            <li>Text pipeline complete; image claims and the WhatsApp gateway are in progress.</li>
-          </ul></details>
-          <div class="foot"><div class="chips"><span>Python</span><span>Meta AI</span><span>WhatsApp Cloud API</span></div></div>
-        </article>
-
-        <article class="card active" data-tags="multi rag">
-          <div class="top"><h3>MarketX</h3><span class="pulse">ACTIVE</span></div>
-          <div class="chain"><span class="n r">filings · news · prices</span><span class="ar">→</span><span class="pair"><span class="n p">regime · screener</span><span class="n p">technical · risk</span></span><span class="ar">→</span><span class="n p">bull ⇄ bear</span><span class="ar">→</span><span class="n c">validation veto</span><span class="ar">→</span><span class="n e">walk-forward gate</span></div>
-          <p class="pitch">A local research platform where specialist agents rank NSE stocks and a validator can reject weak picks.</p>
-          <div class="specs"><div><span class="sk">Problem</span>Indian market data is scattered across filings, results and news.</div><div><span class="sk c">Check</span>Validation agent and a probabilistic judge.</div><div><span class="sk e">Guardrail</span>Point-in-time data; ideas ship only if they pass a walk-forward test.</div></div>
-          <details><summary>Details</summary><ul>
-            <li>Inputs: broker data, NSE filings, XBRL results, news and macro indicators.</li>
-            <li>RAG search over filings and news, on local LLMs.</li>
-            <li>Tested walk-forward from 2019 to 2026, with intraday, swing and F&amp;O kept as separate tracks.</li>
-          </ul></details>
-          <div class="foot"><div class="chips"><span>Python</span><span>Ollama</span><span>RAG</span><span>Angel One API</span></div><a href="https://github.com/anurag-devx/marketx" target="_blank" rel="noopener">Code ↗</a></div>
-        </article>
-
-        <article class="card active" data-tags="multi security">
-          <div class="top"><h3>offline-agent</h3><span class="pulse">ACTIVE</span><span class="status">Open source · MIT · v0.2.0</span></div>
-          <div class="chain"><span class="n io">task</span><span class="ar">→</span><span class="n p">model decides once</span><span class="ar">→</span><span class="n e">permission check</span><span class="ar">→</span><span class="n e">code executes</span><span class="ar">→</span><span class="n c">verifier agent</span><span class="ar">→</span><span class="n e">log · undo</span></div>
-          <p class="pitch">A Python framework for running reliable AI agents on local models, with safety enforced in code.</p>
-          <div class="specs"><div><span class="sk">Problem</span>Small local models fail long tool-calling loops.</div><div><span class="sk c">Check</span>A read-only verifier agent checks every outcome.</div><div><span class="sk e">Guardrail</span>Permission policy, human approvals, undo and run logs.</div></div>
-          <div class="race" aria-label="Benchmark: rule mode finished in 89 seconds; the classic loop ran about 17 minutes and failed">
-            <div class="k">Benchmark race · bars to scale</div>
+            <div class="verdict"><b>Verdict: Misleading</b><span>Real event, wrong photo. 3 sources cited.</span></div>
+          </div><div class="foot"><div class="chips"><span>Python</span><span>Meta AI</span><span>WhatsApp Cloud API</span></div></div></div></div>
+        </details>
+        <details class="proj active" id="p-marketx" data-tags="multi rag">
+          <summary><span class="pname">MarketX</span><span class="pstat">Active, research phase</span><span class="ppitch">Scenario-based research for NSE stocks: past events laid over today.</span><span class="ptags"><span class="ptag">Multi-agent</span><span class="ptag">RAG</span><span class="pmore" aria-hidden="true"></span></span></summary>
+          <div class="pbody"><ol class="flowv" aria-label="How it works, step by step"><li class="fs rt"><div class="ft"><b>Point-in-time data</b><span class="role">retrieval</span></div><p>Prices and volume, NSE filings and results, news and macro, each stored with the time it became known.</p></li><li class="fs cd"><div class="ft"><b>Events tagged</b><span class="role">code</span></div><p>Each day&rsquo;s filings, news and macro moves are tagged as events.</p></li><li class="fs rt"><div class="ft"><b>Past scenarios matched</b><span class="role">retrieval</span></div><p>Past days with similar events and market setups are found and laid over today.</p></li><li class="fs cd"><div class="ft"><b>Backed by TA and fundamentals</b><span class="role">code</span></div><p>Each candidate is checked against chart and volume signals, with no lagging indicators, plus fundamentals and recent announcements.</p></li><li class="fs ag"><div class="ft"><b>Agent debate (beta)</b><span class="role">agent</span></div><p>Bull and bear agents argue whether it is a good pick.</p></li><li class="fs ck"><div class="ft"><b>Research gate</b><span class="role">checker</span></div><p>Ideas are replayed over past nights against baselines and Nifty after costs, and ship only if they pass.</p></li></ol><div class="pside"><div class=specs2><div><span class="sk">Problem</span>Indian market data is scattered across filings, results and news.</div><div><span class="sk e">Guardrail</span>Point-in-time data, so no test sees the future. Intraday, swing and F&amp;O are ranked as separate tracks across all NSE stocks.</div></div><div class="foot"><div class="chips"><span>Python</span><span>Ollama</span><span>RAG</span><span>Angel One API</span></div><a class="codelink" href="https://github.com/anurag-devx/marketx" target="_blank" rel="noopener">View code on GitHub</a></div></div></div>
+        </details>
+        <details class="proj active" id="p-offline-agent" data-tags="multi security">
+          <summary><span class="pname">offline-agent</span><span class="pstat">Active, open source, v0.2.0</span><span class="ppitch">A Python framework for reliable AI agents on local models.</span><span class="ptags"><span class="ptag">Multi-agent</span><span class="ptag">Security</span><span class="pmore" aria-hidden="true"></span></span></summary>
+          <div class="pbody"><ol class="flowv" aria-label="How it works, step by step"><li class="fs in"><div class="ft"><b>Task in YAML</b><span class="role">input</span></div><p>An agent and its task are defined in a YAML file.</p></li><li class="fs ag"><div class="ft"><b>Model decides once</b><span class="role">agent</span></div><p>In rule mode the model makes one decision instead of looping through tools.</p></li><li class="fs cd"><div class="ft"><b>Permission check</b><span class="role">code</span></div><p>A policy limits which tools and paths it may touch; risky steps wait for approval.</p></li><li class="fs cd"><div class="ft"><b>Code executes</b><span class="role">code</span></div><p>Deterministic code carries out the decision.</p></li><li class="fs ck"><div class="ft"><b>Verifier agent</b><span class="role">checker</span></div><p>A read-only agent checks the outcome against the goal.</p></li><li class="fs out"><div class="ft"><b>Logged and undoable</b><span class="role">output</span></div><p>Every run is logged and can be rolled back.</p></li></ol><div class="pside"><div class=specs2><div><span class="sk">Problem</span>Small local models fail long tool-calling loops.</div><div><span class="sk e">Guardrail</span>Safety lives in code, covered by 41 tests in CI on three OSes.</div></div><div class="race" aria-label="Benchmark: rule mode finished in 89 seconds; the classic loop ran about 17 minutes and failed">
+            <div class="k">Benchmark race, bars to scale</div>
             <div class="lane"><span class="who">Rule mode</span><span class="track2"><span class="fill fast"></span></span><span class="res ok">89 s ✓</span></div>
             <div class="lane"><span class="who">Classic loop</span><span class="track2"><span class="fill slow"></span></span><span class="res bad">~17 min ✗</span></div>
             <div class="note">Same file-sorting task, qwen3.5:9b on a 16 GB laptop. Tokens: 532 vs 15,705.</div>
-          </div>
-          <details><summary>Details</summary><ul>
-            <li>Agents defined in YAML, with a visual studio and a command-line tool.</li>
-            <li>41 tests run in CI on three operating systems.</li>
-            <li>Next: triage and coordinator agents for larger jobs, and a small-to-big model cascade.</li>
-          </ul></details>
-          <div class="foot"><div class="chips"><span>Python</span><span>Ollama</span><span>YAML</span><span>pytest</span><span>GitHub Actions</span></div><a href="https://github.com/anurag-devx/offline-agent" target="_blank" rel="noopener">Code ↗</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="stack">
-      <div class="head">
-        <div class="label"><b>○</b> Prototypes &amp; RAG builds</div>
-        <h2 style="font-size:clamp(1.3rem,2.6vw,1.7rem)">Earlier work</h2>
-      </div>
-      <div class="cards small">
-        <article class="card" data-tags="security">
-          <div class="top"><h3>doc-governance-mvp</h3><span class="status">Prototype</span></div>
-          <div class="chain"><span class="n io">pull request</span><span class="ar">→</span><span class="n p">AI validation</span><span class="ar">→</span><span class="n c">review before merge</span></div>
-          <p class="pitch">GitHub Actions run AI validation on documentation changes and flag issues on the pull request.</p>
-          <div class="foot"><div class="chips"><span>GitHub Actions</span><span>LLM</span></div><a href="https://github.com/anurag-devx/doc-governance-mvp" target="_blank" rel="noopener">Code ↗</a></div>
-        </article>
-        <article class="card" data-tags="rag">
-          <div class="top"><h3>Local-First RAG Assistant</h3><span class="status">Private · on request</span></div>
-          <div class="chain"><span class="n io">PDFs</span><span class="ar">→</span><span class="pair"><span class="n r">FAISS dense</span><span class="n r">BM25 keyword</span></span><span class="ar">→</span><span class="n c">rerank</span><span class="ar">→</span><span class="n e">grounded answer</span></div>
-          <p class="pitch">Local PDF question answering built to get retrieval right before generation.</p>
-          <div class="foot"><div class="chips"><span>FAISS</span><span>BM25</span><span>FastAPI</span><span>Streamlit</span></div></div>
-        </article>
-        <article class="card" data-tags="rag">
-          <div class="top"><h3>Doc2Insight</h3><span class="status">Private · on request</span></div>
-          <div class="chain"><span class="n io">many formats</span><span class="ar">→</span><span class="n r">one index</span><span class="ar">→</span><span class="n e">cited answer</span></div>
-          <p class="pitch">Document Q&amp;A where every reply traces back to the document it came from.</p>
-          <div class="foot"><div class="chips"><span>RAG</span><span>GPT-4o-mini</span></div></div>
-        </article>
+          </div><div class="foot"><div class="chips"><span>Python</span><span>Ollama</span><span>YAML</span><span>pytest</span><span>GitHub Actions</span></div><a class="codelink" href="https://github.com/anurag-devx/offline-agent" target="_blank" rel="noopener">View code on GitHub</a></div></div></div>
+        </details>
+        <div class="pgroup">Earlier work</div>
+        <details class="proj" id="p-doc-governance" data-tags="security">
+          <summary><span class="pname">doc-governance-mvp</span><span class="pstat">Prototype</span><span class="ppitch">AI review of documentation changes, inside GitHub.</span><span class="ptags"><span class="ptag">Security</span><span class="pmore" aria-hidden="true"></span></span></summary>
+          <div class="pbody"><ol class="flowv" aria-label="How it works, step by step"><li class="fs in"><div class="ft"><b>Pull request</b><span class="role">input</span></div><p>A documentation change opens a pull request.</p></li><li class="fs ag"><div class="ft"><b>AI validation</b><span class="role">agent</span></div><p>GitHub Actions run an AI check on the changed docs.</p></li><li class="fs ck"><div class="ft"><b>Review before merge</b><span class="role">checker</span></div><p>Issues are flagged on the pull request before anything merges.</p></li></ol><div class="pside"><div class="foot"><div class="chips"><span>GitHub Actions</span><span>LLM</span></div><a class="codelink" href="https://github.com/anurag-devx/doc-governance-mvp" target="_blank" rel="noopener">View code on GitHub</a></div></div></div>
+        </details>
+        <details class="proj" id="p-rag-assistant" data-tags="rag">
+          <summary><span class="pname">Local-First RAG Assistant</span><span class="pstat">Private, on request</span><span class="ppitch">Local PDF question answering, retrieval first.</span><span class="ptags"><span class="ptag">RAG</span><span class="pmore" aria-hidden="true"></span></span></summary>
+          <div class="pbody"><ol class="flowv" aria-label="How it works, step by step"><li class="fs in"><div class="ft"><b>PDFs in</b><span class="role">input</span></div><p>Documents are parsed, chunked and embedded locally.</p></li><li class="fs rt"><div class="ft"><b>Hybrid search</b><span class="role">retrieval</span></div><p>FAISS finds meaning; BM25 finds exact terms.</p></li><li class="fs ck"><div class="ft"><b>Rerank</b><span class="role">checker</span></div><p>A cross-encoder rescores the top passages.</p></li><li class="fs out"><div class="ft"><b>Grounded answer</b><span class="role">output</span></div><p>The answer comes only from those passages.</p></li></ol><div class="pside"><div class="foot"><div class="chips"><span>FAISS</span><span>BM25</span><span>FastAPI</span><span>Streamlit</span></div></div></div></div>
+        </details>
+        <details class="proj" id="p-doc2insight" data-tags="rag">
+          <summary><span class="pname">Doc2Insight</span><span class="pstat">Private, on request</span><span class="ppitch">Document Q&amp;A where every reply traces to its source.</span><span class="ptags"><span class="ptag">RAG</span><span class="pmore" aria-hidden="true"></span></span></summary>
+          <div class="pbody"><ol class="flowv" aria-label="How it works, step by step"><li class="fs in"><div class="ft"><b>Any format in</b><span class="role">input</span></div><p>Files of several formats go into one index.</p></li><li class="fs rt"><div class="ft"><b>Retrieve</b><span class="role">retrieval</span></div><p>Relevant passages are found for each question.</p></li><li class="fs out"><div class="ft"><b>Cited answer</b><span class="role">output</span></div><p>Each reply names the document it came from.</p></li></ol><div class="pside"><div class="foot"><div class="chips"><span>RAG</span><span>GPT-4o-mini</span></div></div></div></div>
+        </details>
       </div>
     </section>
   </div>
@@ -578,11 +600,11 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
   <div class="view" data-view="experience" hidden>
     <section class="stack">
       <div class="head">
-        <div class="label"><b>●</b> Experience</div>
-        <h2>Six years in banking and fintech</h2>
+        <h2>Experience</h2>
+        <p>Six years in banking and fintech.</p>
       </div>
       <div class="jobs">
-        <div class="job"><div class="when">Dec 2024 – Present</div><div>
+        <div class="job"><div class="when">Dec 2024 to present</div><div>
           <h3>Citi India</h3><div class="role">Information Management Officer, Digital Product Strategy</div>
           <ul>
             <li>Architected a RAG-based AI governance platform with automated model review, human-in-the-loop approvals, audit logging and GitHub integration for review before merge.</li>
@@ -591,7 +613,7 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
             <li>Owned end-to-end launch analytics for Paze Wallet and early-adoption analysis for FlexPay (Apple Pay BNPL).</li>
             <li>Received the Citi Silver Gratitude Award for end-to-end wallet analytics on the Paze Wallet launch.</li>
           </ul></div></div>
-        <div class="job"><div class="when">Dec 2021 – Nov 2024</div><div>
+        <div class="job"><div class="when">Dec 2021 to Nov 2024</div><div>
           <h3>Simpl</h3><div class="role">Senior Data Analyst, Product &amp; Operations</div>
           <ul>
             <li>Recovered $1.1M in delinquent accounts within 45 days with predictive risk scoring for collections.</li>
@@ -599,9 +621,9 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
             <li>Designed the Instant Refund eligibility model and A/B test: ~20% lower delinquency net of chargeback costs; the rule went live.</li>
             <li>Built a merchant risk-scoring framework (approval rate, refunds, chargebacks, support tickets); flagged merchants had their terms revised with the partnerships team.</li>
             <li>Designed a two-stage NLP intent framework that improved intent classification by 15% and cut support load by 20%.</li>
-            <li>Built and owned end-to-end support analytics; won the 2023 Annual Award ("Do More With Less").</li>
+            <li>Built and owned end-to-end support analytics; won the 2023 Annual Award (“Do More With Less”).</li>
           </ul></div></div>
-        <div class="job"><div class="when">Dec 2020 – Dec 2021</div><div>
+        <div class="job"><div class="when">Dec 2020 to Dec 2021</div><div>
           <h3>ESSI</h3><div class="role">Operations Analyst, Strategic Operations</div>
           <ul><li>Built pricing optimisation models that lifted bid win rate 30% across 20+ projects.</li></ul></div></div>
       </div>
@@ -609,7 +631,7 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
 
     <section class="two">
       <div class="stack">
-        <div class="label">Skills</div>
+        <h2 class="sub">Skills</h2>
         <h3>GenAI &amp; agents</h3>
         <div class="chips"><span>Multi-agent systems</span><span>Agent orchestration</span><span>Tool calling</span><span>RAG</span><span>Embeddings</span><span>Hybrid retrieval</span><span>Cross-encoder reranking</span><span>Prompt-injection defence</span><span>Ollama</span><span>Local LLMs</span></div>
         <h3>Analytics &amp; ML</h3>
@@ -618,23 +640,22 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
         <div class="chips"><span>Python</span><span>SQL</span><span>PySpark</span><span>Impala / HDFS</span><span>FastAPI</span><span>Tableau</span><span>GitHub Actions</span></div>
       </div>
       <div class="stack">
-        <div class="label">Education &amp; certification</div>
+        <h2 class="sub">Education and certification</h2>
         <ul class="edu">
-          <li><span>MBA, Operations &amp; Statistics<small>IIIT Allahabad · Silver Medalist</small></span><span>2020</span></li>
-          <li><span>B.Tech, Mechanical Engineering<small>SPPU Pune · Distinction</small></span><span>2017</span></li>
+          <li><span>MBA, Operations &amp; Statistics<small>IIIT Allahabad, Silver Medalist</small></span><span>2020</span></li>
+          <li><span>B.Tech, Mechanical Engineering<small>SPPU Pune, Distinction</small></span><span>2017</span></li>
           <li><span>Generative AI Engineering Professional Certificate<small>IBM</small></span><span>2026</span></li>
-          <li><span>Supervised Machine Learning<small>DeepLearning.AI &amp; Stanford Online</small></span><span>2022</span></li>
+          <li><span>Supervised Machine Learning<small>DeepLearning.AI and Stanford Online</small></span><span>2022</span></li>
         </ul>
       </div>
     </section>
   </div>
 
   <section class="contact" aria-labelledby="c-h" style="margin-top:clamp(40px,7vw,72px)">
-    <div class="label">Contact</div>
-    <h2 id="c-h">Building multi-agent or RAG systems?</h2>
-    <p><span class="pulse">OPEN FOR COLLABORATION &amp; DISCUSSION</span></p>
-    <p>Happy to talk through multi-agent design, RAG systems or AI security, or to collaborate on open-source work. Also open to Applied AI, GenAI engineering and analytics leadership roles in Pune, Bengaluru, Mumbai, Gurugram, Ahmedabad or remote, from January 2027.</p>
-    <div class="cta">
+    <div class="ctext"><h2 id="c-h">Building multi-agent or RAG systems?</h2>
+    <p><span class="pulse">Open for collaboration and discussion</span></p>
+    <p>Happy to talk through multi-agent design, RAG systems or AI security, or to collaborate on open-source work. Also open to Applied AI, GenAI engineering and analytics leadership roles in Pune, Bengaluru, Mumbai, Gurugram, Ahmedabad or remote, from January 2027.</p></div>
+    <div class="cta cstack">
       <a class="btn primary" href="https://www.linkedin.com/in/anurag-singh-037a83103/" target="_blank" rel="noopener">Message on LinkedIn</a>
       <a class="btn" href="mailto:anurag1481@gmail.com">Email</a>
       <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
@@ -656,8 +677,8 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
 
   var views=[].slice.call(document.querySelectorAll('[data-view]')), names=views.map(function(v){return v.dataset.view});
   var tabs=[].slice.call(document.querySelectorAll('.tabs a'));
-  function route(){
-    var h=(location.hash||'').slice(1); if(names.indexOf(h)<0) h='home';
+  function route(){ var h=(location.hash||'').slice(1); show(names.indexOf(h)<0?'home':h) }
+  function show(h){
     views.forEach(function(v){v.hidden=v.dataset.view!==h});
     tabs.forEach(function(a){if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
     window.scrollTo(0,0);
@@ -783,7 +804,7 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
   [].slice.call(document.querySelectorAll('.fchip')).forEach(function(b,_,all){
     b.addEventListener('click',function(){
       var f=b.dataset.f; all.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-      document.querySelectorAll('[data-view="projects"] .card').forEach(function(c){c.hidden=!(f==='all'||(' '+c.dataset.tags+' ').indexOf(' '+f+' ')>=0)});
+      document.querySelectorAll('.proj').forEach(function(c){c.hidden=!(f==='all'||(' '+c.dataset.tags+' ').indexOf(' '+f+' ')>=0)});
     });
   });
 
@@ -807,7 +828,17 @@ footer .wrap{padding-block:26px 34px;color:var(--muted);font-size:.82rem;display
     addEventListener('resize',function(){requestAnimationFrame(layoutLoop)});
     if(window.ResizeObserver) new ResizeObserver(function(){layoutLoop()}).observe(lw);
   }
-  addEventListener('hashchange',route); route();
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]'); if(!a) return;
+    var h=a.getAttribute('href').slice(1); if(names.indexOf(h)<0) return;
+    e.preventDefault();
+    try{ if(location.hash!=='#'+h) history.pushState(null,'','#'+h) }catch(err){}
+    show(h);
+    var c=a.dataset.card&&document.getElementById(a.dataset.card);
+    if(c) requestAnimationFrame(function(){ if(c.tagName==='DETAILS') c.open=true; c.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'}); c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},1400) });
+  });
+  document.querySelectorAll('.proj').forEach(function(d){d.addEventListener('toggle',function(){ if(d.open) document.querySelectorAll('.proj[open]').forEach(function(o){ if(o!==d) o.open=false }) })});
+  addEventListener('hashchange',route); addEventListener('popstate',route); route();
 
   var b=document.getElementById('copy'), t=document.getElementById('em');
   b.addEventListener('click',function(){
