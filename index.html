@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -45,16 +45,6 @@ img{max-width:100%}
   --shadow-card:14px 14px 0 var(--color-paper-3);--shadow-card-hover:14px 14px 0 var(--color-ink);
   --tracking-display:-.025em;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  color-scheme:dark;
-  --color-paper:oklch(15% .006 60);--color-paper-2:oklch(19% .007 60);--color-paper-3:oklch(25% .008 60);
-  --color-plate:oklch(19.5% .007 60);
-  --color-ink:oklch(95% .01 80);--color-ink-2:oklch(86% .01 80);--color-muted:oklch(72% .012 70);
-  --color-rule:oklch(33% .01 70);
-  --color-accent:oklch(70% .13 40);--color-accent-soft:oklch(30% .05 40);--color-accent-ink:oklch(15% .006 60);--color-focus:oklch(72% .13 40);
-  --color-ok:oklch(74% .11 150);
-  --shadow-card:10px 10px 0 var(--color-paper-3);--shadow-card-hover:10px 10px 0 var(--color-accent);
-}}
 :root[data-theme="dark"]{
   color-scheme:dark;
   --color-paper:oklch(15% .006 60);--color-paper-2:oklch(19% .007 60);--color-paper-3:oklch(25% .008 60);
@@ -291,6 +281,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .job{display:grid;grid-template-columns:12rem minmax(0,1fr);gap:var(--space-xs) var(--gap-columns);padding-block:var(--space-xl);border-bottom:var(--rule-hair) solid var(--color-rule)}
 .when{font-size:var(--text-sm);color:var(--color-muted);padding-top:var(--space-2xs)}
 .jrole{color:var(--color-muted);margin:var(--space-2xs) 0 var(--space-md)}
+.jnote{color:var(--color-muted);font-size:var(--text-sm);margin:calc(var(--space-sm)*-1) 0 var(--space-md)}
 .job ul{margin:0;padding-left:1.1rem;display:grid;gap:var(--space-xs);max-width:68ch}
 .job li::marker{color:var(--color-accent)}
 @media (max-width:720px){.job{grid-template-columns:1fr}}
@@ -497,7 +488,7 @@ footer .wrap{margin-top:var(--space-xl);padding-block:0 var(--space-xl)}
   <div class="view" data-view="experience" hidden>
     <section class="sec">
       <div class="sec-head"><h2>Experience</h2><p>Six years in banking and fintech.</p></div>
-      <div class="jobs"><article class="job"><p class="code when">Dec 2024 to present</p><div><h3>Citi India</h3><p class="jrole">Information Management Officer, Digital Product Strategy</p><ul><li>Architected a RAG-based AI governance platform with automated model review, human-in-the-loop approvals, audit logging and GitHub integration for review before merge.</li><li>Built a PySpark data quality framework monitoring 100+ metrics across 10+ risk reports, with control-chart alerts.</li><li>Led a SAS migration that automated 20+ risk-reporting workflows, saving 40+ hours a month.</li><li>Owned end-to-end launch analytics for Paze Wallet and early-adoption analysis for FlexPay (Apple Pay BNPL).</li><li>Received the Citi Silver Gratitude Award for end-to-end wallet analytics on the Paze Wallet launch.</li></ul></div></article><article class="job"><p class="code when">Dec 2021 to Nov 2024</p><div><h3>Simpl</h3><p class="jrole">Senior Data Analyst, Product and Operations</p><ul><li>Recovered $1.1M in delinquent accounts within 45 days with predictive risk scoring for collections.</li><li>Raised credit approval rates 6% with a real-time credit limit model.</li><li>Designed the Instant Refund eligibility model and A/B test: ~20% lower delinquency net of chargeback costs; the rule went live.</li><li>Built a merchant risk-scoring framework (approval rate, refunds, chargebacks, support tickets); flagged merchants had their terms revised with the partnerships team.</li><li>Designed a two-stage NLP intent framework that improved intent classification by 15% and cut support load by 20%.</li><li>Built and owned end-to-end support analytics; won the 2023 Annual Award (“Do More With Less”).</li></ul></div></article><article class="job"><p class="code when">Dec 2020 to Dec 2021</p><div><h3>ESSI</h3><p class="jrole">Operations Analyst, Strategic Operations</p><ul><li>Built pricing optimisation models that lifted bid win rate 30% across 20+ projects.</li></ul></div></article></div>
+      <div class="jobs"><article class="job"><p class="code when">Dec 2024 to present</p><div><h3>Citi India</h3><p class="jrole">Information Management Officer, Digital Product Strategy</p><p class="jnote">Enterprise AI Adoption team: credit analytics, compliance and data quality across digital banking</p><ul><li>Owned end-to-end analytics for the Paze Wallet launch, building baseline metrics, behavioral segmentation and adoption-funnel tracking from scratch to drive GTM and credit strategy.</li><li>Ran early-adoption analysis for FlexPay (Apple Pay BNPL) on credit utilization and behavioral patterns; findings shaped the strategies used to drive adoption.</li><li>Led the SAS-to-Enterprise Analytics Platform migration, automating 20+ manual risk-reporting workflows and saving 40+ hours per month.</li><li>Built a Data Quality &amp; Compliance Framework (PySpark, Impala) monitoring 100+ metrics across 10+ risk reports, with a Tableau SPC dashboard that auto-flags deviations so data issues are caught before reports reach stakeholders.</li><li>Architected a RAG-based AI governance platform with automated model review, human-in-the-loop approvals, audit logging and GitHub integration for automated code and commit review.</li><li>Received the Citi Silver Gratitude Award for end-to-end wallet analytics on the Paze Wallet launch.</li></ul></div></article><article class="job"><p class="code when">Dec 2021 to Nov 2024</p><div><h3>Simpl</h3><p class="jrole">Senior Data Analyst, Product &amp; Operations</p><ul><li>Recovered $1.1M in delinquent accounts within 45 days through predictive risk scoring and behavior-based collections.</li><li>Increased credit approval rates by 6% with a real-time credit limit recommendation model, balancing growth against credit risk.</li><li>Built a hypothesis-driven eligibility model for Instant Refund and validated it through an A/B experiment: eligible users showed ~20% lower delinquency and better on-time repayment, net of merchant chargeback and fine costs.</li><li>Led pre-launch analytics for Simpl Select, a premium bundle of priority support, Instant Refund and no-cost pay-in-3 EMI, shaping its pricing and eligibility design.</li><li>Built a merchant risk-scoring framework (approval rate, refund rate, chargeback ratio, support tickets) to flag high-risk sub-merchants; flags went to the merchant partnerships team, who revised terms with those merchants.</li><li>Designed a two-phase conversational AI framework that improved NLP intent classification by 15% and cut support load by 20%.</li><li>Built end-to-end support analytics and took ownership of it, recognized with the 2023 Annual Award (“Do More With Less”).</li></ul></div></article><article class="job"><p class="code when">Dec 2020 to Dec 2021</p><div><h3>ESSI</h3><p class="jrole">Operations Analyst, Strategic Operations</p><ul><li>Built pricing optimization models that improved bid win rate by 30% across 20+ network security projects.</li><li>Applied heuristic optimization to resource allocation, cutting operating expenses by 20%.</li></ul></div></article></div>
     </section>
     <section class="two">
       <div class="sec"><h2 class="sub-h">Skills</h2><div class="skills"><div class="sk-group"><h3>GenAI and agents</h3><div class="chips"><span>Multi-agent systems</span><span>Agent orchestration</span><span>Tool calling</span><span>RAG</span><span>Embeddings</span><span>Hybrid retrieval</span><span>Cross-encoder reranking</span><span>Prompt-injection defence</span><span>Ollama</span><span>Local LLMs</span></div></div><div class="sk-group"><h3>Analytics and ML</h3><div class="chips"><span>A/B testing</span><span>Credit and risk analytics</span><span>XGBoost</span><span>NLP</span><span>Statistics</span><span>Segmentation</span></div></div><div class="sk-group"><h3>Data and engineering</h3><div class="chips"><span>Python</span><span>SQL</span><span>PySpark</span><span>Databricks</span><span>Impala / HDFS</span><span>FastAPI</span><span>Tableau</span><span>GitHub Actions</span></div></div></div></div>
@@ -524,7 +515,7 @@ footer .wrap{margin-top:var(--space-xl);padding-block:0 var(--space-xl)}
   function sysDark(){try{return matchMedia('(prefers-color-scheme: dark)').matches}catch(e){return true}}
   function apply(t){root.setAttribute('data-theme',t);var d=t==='dark';sw.setAttribute('aria-checked',d);lbl.textContent=d?'Dark':'Light'}
   var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
-  apply(saved==='light'||saved==='dark'?saved:(sysDark()?'dark':'light'));
+  apply(saved==='dark'?'dark':'light');
   sw.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';apply(t);try{localStorage.setItem('theme',t)}catch(e){}});
 
   var views=[].slice.call(document.querySelectorAll('[data-view]')), names=views.map(function(v){return v.dataset.view});
